@@ -200,15 +200,17 @@ if ($item === "weapons") {
 
     <?php foreach ($catalog as $espada): ?>
       <div class="col">
-        <div class="card h-100 text-center">
-          <img src="images/traveler-icon.png" class="card-img-top card-img-back  position-absolute z-n1" alt="">
-          <img src="images/items/<?= $espada['imagen']; ?>" class="card-img-top" alt="<?= $espada['nombre']; ?>">
-          <div class="card-body">
-            <h5 class="card-title"><?= $espada['nombre']; ?></h5>
-            <p class="fw-bold"> <img src="images/rupia.png" alt="icono" width="20" height="30" class="me-2">
-              <?= $espada['precio']; ?></p>
-            <button type="button" class="btn btn-custom w-100">
-              Primary</button>
+        <div class="card-1">
+          <div class="card h-100 text-center">
+            <img src="images/traveler-icon.png" class="card-img-top card-img-back  position-absolute z-n1" alt="">
+            <img src="images/items/<?= $espada['imagen']; ?>" class="card-img-top" alt="<?= $espada['nombre']; ?>">
+            <div class="card-body">
+              <h5 class="card-title"><?= $espada['nombre']; ?></h5>
+              <p class="fw-bold"> <img src="images/rupia.png" alt="icono" width="20" height="30" class="me-2">
+                <?= $espada['precio']; ?></p>
+              <button type="button" class="btn btn-custom w-100">
+                Comprar</button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 :root {
 
+
     --background-secondary-light-100: #0A467B;
     --background-principal-light-100: #236693;
 
@@ -11,6 +12,7 @@
 
     --primary-color: #038c33;
     --secondary: #1EC6D9;
+    --terciary: #23669385;
 
 }
 
@@ -58,7 +60,7 @@ body::before {
 
 
 .bg-tecno {
-    background-color: #23669385;
+    background-color: var(--terciary);
     color: white;
 }
 
@@ -161,6 +163,9 @@ body::before {
     from { box-shadow: 0 0 10px #00d1ff44; }
     to { box-shadow: 0 0 20px #00d1ff88; }
   } */
+
+
+
 /* Efecto de gradiente animado (estela) */
 .glow-wrapper {
     position: relative;
@@ -174,20 +179,18 @@ body::before {
 
 /* Fondo animado 1*/
 
-.glow-wrapper::before {
+.opinions-container::before {
     content: "";
+    border-radius: 19px;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(135deg,
-            rgba(0, 168, 255, 0.7) 0%,
-            rgba(0, 255, 136, 0.7) 50%,
-            rgba(0, 168, 255, 0.7) 100%);
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.7) 0%, rgba(0, 255, 136, 0.7) 50%, rgba(0, 168, 255, 0.7) 100%);
     background-size: 200% 200%;
     animation: gradientFlow 6s ease infinite;
-    z-index: 0;
+    z-index: -1;
     opacity: 0.5;
 }
 
@@ -215,22 +218,132 @@ body::before {
     box-sizing: border-box;
     border-radius: 1rem;
 }
+
 /* estilos productos */
+.card-1 {
+    background-image: linear-gradient(163deg, var(--secondary) 0%, var(--primary-color) 100%);
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--bs-border-radius);
+    transition: all .3s;
+    border-width: var(--bs-border-width);;
+}
 
 .card {
     position: relative;
-    box-shadow: 0px 0px 58px 15px rgba(6, 115, 64, 0.5) inset, 0px 0px 30px 24px rgba(3, 140, 51, 0.7) inset, 3px 7px 16px 7px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(43px);
-    border-radius: 17px;
+    border-radius: var(--bs-border-radius);
     background-color: #13224b9c;
     color: white;
+    /* box-shadow: 0px 0px 4px 4px rgba(6, 115, 64, 0.5) inset, 0px 0px 32px 8px rgba(3, 140, 51, 0.7) inset, 18px 15px 6px 18px rgba(0, 0, 0, 0.25); */
 }
-.card-img-back{
+
+.card:hover {
+    transform: scale(0.98);
+    border-radius: var(--bs-border-radius);
+}
+
+.card-1:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+
+
+/* TEST CARD */
+
+/* From Uiverse.io by ElSombrero2 */
+
+
+.card::before {
+    opacity: 0;
+    transition: opacity 300ms;
+    border-radius: var(--bs-border-radius);
+    content: " ";
+    display: block;
+    background: white;
+    width: 5px;
+    height: 50px;
+    position: absolute;
+    filter: blur(10px);
+    overflow: hidden;
+}
+.card-1::before {
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 110%;
+    border-radius: var(--bs-border-radius);
+
+    background: linear-gradient(var(--primary-color), var(--secondary));
+    transition: opacity 300ms;
+    animation: rotation_9018 8000ms infinite linear;
+    animation-play-state: paused;
+}
+
+.card-1:hover .card::before {
+    opacity: 1;
+}
+
+.card-1:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.card-1::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 110%;
+    border-radius: var(--bs-border-radius);
+
+    backdrop-filter: blur(10px);
+}
+
+@keyframes rotation_9018 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+/* TEST CARD */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card-img-back {
     opacity: 0.2;
 }
 
 .btn-custom {
-    background: linear-gradient(90deg, #038c33, #1ec6d9);
+    /* background: var(--terciary);
+    color: var(--secondary); */
+    background: linear-gradient(90deg, var(--secondary) , var(--primary-color));
     color: white;
     border: none;
     transition: all 2s;
@@ -240,16 +353,47 @@ body::before {
 .btn-custom:hover {
     background: linear-gradient(90deg, rgba(3, 140, 51, 0.5), rgba(30, 198, 217, 0.5));
     color: white;
-    transition: opacity 0.4s ease;
+    transition: all 0.4s ease;
 }
-.card-title{
+
+.card-title {
     min-height: 60px;
 }
+
 /* Contenedor del borde animado */
 /* Contenedor del borde animado */
 
 
-.not-found-image{
- height: 100vh;
- width: auto;
+.not-found-image {
+    height: 100vh;
+    width: auto;
+}
+
+
+/* estilos boton */
+.button-container {
+    position: relative;
+    background: var(--secondary);
+    transition: all 0.4s ease;
+    border-radius: var(--bs-border-radius);
+}
+
+.button-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 0.9em;
+    z-index: -10;
+    filter: blur(0);
+    transition: all 0.4s ease;
+}
+
+.button-container:hover::before {
+    background: var(--secondary);
+    filter: blur(1.2em);
+}
+
+.button-container:active::before {
+    filter: blur(0.2em);
 }
