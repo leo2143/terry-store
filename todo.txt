@@ -1,0 +1,4 @@
+Tasks:
+optimizar imagenes,
+eliminar fondos de las imagenes,
+diseñarlos para que tengan el mismo tamaño de w y h

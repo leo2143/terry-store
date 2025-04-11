@@ -1,0 +1,255 @@
+:root {
+
+    --background-secondary-light-100: #0A467B;
+    --background-principal-light-100: #236693;
+
+    --background-secondary-light-50: #0a467b85;
+    --background-principal-light-50: #23669385;
+
+    --background-secondary-light-20: #0a467b41;
+    --background-principal-light-20: #2366935b;
+
+    --primary-color: #038c33;
+    --secondary: #1EC6D9;
+
+}
+
+
+body {
+    margin: 0;
+    line-height: normal;
+    background-image: url(../images/background-pats.png);
+    background-size: 400px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Uncial Antiqua", system-ui;
+    color: white;
+}
+
+p {
+    font-family: "EB Garamond", serif;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+    color: white;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+
+    box-shadow:
+        inset 0 50px 100px -60px var(--background-principal-light-100),
+        /* top */
+        inset 0 -50px 100px -60px var(--background-secondary-light-100),
+        /* bottom */
+        inset 50px 0 100px -60px var(--background-principal-light-100),
+        /* left */
+        inset -50px 0 100px -60px var(--background-secondary-light-100);
+    /* right */
+}
+
+
+.bg-tecno {
+    background-color: #23669385;
+    color: white;
+}
+
+.navbar a {
+    color: var(--secondary);
+}
+
+
+/* figma */
+.home-container {
+    position: relative;
+    color: white;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    background: linear-gradient(241.94deg, rgba(57, 49, 41, 0.1), rgba(217, 217, 217, 0.1));
+    width: 100%;
+    height: 583px;
+}
+
+.terry-home-image-container {
+    width: 30%;
+}
+
+.terry-home-image {
+    position: absolute;
+    top: 52px;
+    width: 451px;
+    left: -30px;
+    object-fit: cover;
+}
+
+.star {
+    clip-path: polygon(51% 0, 63% 31%, 99% 34%, 72% 56%, 79% 91%, 49% 79%, 21% 91%, 28% 60%, 2% 35%, 38% 31%);
+    background-color: #038c33;
+    content: "";
+    width: 2rem;
+    height: 2rem;
+}
+
+/* .opinions-container{
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-secondary-light-20);
+    box-shadow: 0px 0px 27px 20px rgba(35, 102, 147, 0.25) inset;
+    backdrop-filter: blur(2px);
+    border: 1px solid #236693;
+    box-sizing: border-box;
+} */
+/* .glow-wrapper {
+    border: #038c33 3px solid;
+    padding: 0px;
+  }
+  
+  .opinions-container {
+    position: relative;
+    background-color: var(--background-secondary-light-20);
+    box-shadow: 0px 0px 27px 20px rgba(35, 102, 147, 0.25) inset;
+    backdrop-filter: blur(2px);
+    border: 1px solid #236693;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    overflow: hidden;
+    z-index: 1;
+  } */
+
+
+
+/* figma*/
+
+
+
+/* 
+.sheikah-terminal {
+    background-color: #0a0a0a;
+    color: #00d1ff;
+    font-family: 'Share Tech Mono', monospace;
+    padding: 2rem;
+    border: 2px solid #00d1ff;
+    border-radius: 10px;
+    width: fit-content;
+    animation: glow 2s infinite alternate;
+  }
+  
+  .line {
+    margin: 0.5rem 0;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .line:nth-child(1) { animation-delay: 0s; }
+  .line:nth-child(2) { animation-delay: 1.2s; }
+  .line:nth-child(3) { animation-delay: 2.4s; }
+  .line:nth-child(4) { animation-delay: 3.6s; }
+  
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 10px #00d1ff44; }
+    to { box-shadow: 0 0 20px #00d1ff88; }
+  } */
+/* Efecto de gradiente animado (estela) */
+.glow-wrapper {
+    position: relative;
+    /* Necesario para el pseudo-elemento */
+    padding: 0px;
+    overflow: hidden;
+    /* Contiene el efecto glow */
+    border-radius: 1rem;
+    /* Asegura que coincida con rounded-4 */
+}
+
+/* Fondo animado 1*/
+
+.glow-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(135deg,
+            rgba(0, 168, 255, 0.7) 0%,
+            rgba(0, 255, 136, 0.7) 50%,
+            rgba(0, 168, 255, 0.7) 100%);
+    background-size: 200% 200%;
+    animation: gradientFlow 6s ease infinite;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.opinions-container {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-secondary-light-20);
+    box-shadow: 0px 0px 27px 20px rgba(35, 102, 147, 0.25) inset;
+    backdrop-filter: blur(2px);
+    border: 1px solid #236693;
+    box-sizing: border-box;
+    border-radius: 1rem;
+}
+/* estilos productos */
+
+.card {
+    position: relative;
+    box-shadow: 0px 0px 58px 15px rgba(6, 115, 64, 0.5) inset, 0px 0px 30px 24px rgba(3, 140, 51, 0.7) inset, 3px 7px 16px 7px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(43px);
+    border-radius: 17px;
+    background-color: #13224b9c;
+    color: white;
+}
+.card-img-back{
+    opacity: 0.2;
+}
+
+.btn-custom {
+    background: linear-gradient(90deg, #038c33, #1ec6d9);
+    color: white;
+    border: none;
+    transition: all 2s;
+
+}
+
+.btn-custom:hover {
+    background: linear-gradient(90deg, rgba(3, 140, 51, 0.5), rgba(30, 198, 217, 0.5));
+    color: white;
+    transition: opacity 0.4s ease;
+}
+.card-title{
+    min-height: 60px;
+}
+/* Contenedor del borde animado */
+/* Contenedor del borde animado */
+
+
+.not-found-image{
+ height: 100vh;
+ width: auto;
+}
