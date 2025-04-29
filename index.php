@@ -7,6 +7,7 @@ $ok_urls = [
   "products",
   "weapons",
   "clothes",
+  "product-details",
 ];
 
 $section = isset($_GET["page"]) ? $_GET["page"] : "home";
@@ -42,36 +43,37 @@ $vista = $section;
 
 <body>
 
-  <nav class="navbar navbar-expand-lg bg-tecno">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=about-terry">Sobre-terry-store</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=products&item=all">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=products&item=weapons">Armas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=products&item=shield">Escudos</a>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg bg-tecno">
+  <div class="container-fluid pb-2">
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=products&item=all">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=products&item=weapons">Armas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=products&item=shield">Escudos</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
 
   <main>
@@ -83,6 +85,34 @@ $vista = $section;
     ?>
 
   </main>
+  <footer class="bg-dark ">
+    <div
+      class="container bg-dark text-light text-center d-flex flex-column justify-content-between align-items-center p-5 fw-medium fs-4 flex-lg-row">
+      <div class="d-flex justify-content-center gap-5 align-items-center text-center mb-1">
+        <div class="">
+          <a href="https://www.instagram.com/leo.orellana_/">
+            <img class="img-fluid" src="images/footer/instagram-logo.svg" alt="icono de instagram" />
+          </a>
+        </div>
+        <div class="">
+          <p>Leonardo Orellana</p>
+        </div>
+        <div class="">
+          <a href="https://www.linkedin.com/in/leonardo-orellana-998740222/?originalSubdomain=ar">
+            <img class="img-fluid" src="images/footer/linkeding-logo.svg" alt="linkedin logo" />
+          </a>
+        </div>
+      </div>
+      <div class="">
+        <img class="img-fluid rounded-5" src="images/footer/foto-de-mi.svg" alt="foto retrato propia" />
+      </div>
+      <div class="">
+        <div class="">
+          <p>leonardo.orellana@davinci.edu.ar</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
 
