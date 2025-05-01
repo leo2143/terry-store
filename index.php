@@ -1,23 +1,20 @@
 <?PHP
+require_once 'class/Equipment.php';
+require_once 'class/View.php';
 
-$ok_urls = [
-  "home",
-  "about-terry",
-  "opinions",
-  "products",
-  "weapons",
-  "clothes",
-  "product-details",
-];
 
 $section = isset($_GET["page"]) ? $_GET["page"] : "home";
 
-if (!in_array($section, $ok_urls)) {
-  $vista = "404";
-}else{
+$vista = View::view_validation($section);
 
-$vista = $section;
+$equipmentSelected = isset($_GET['item']) ? $_GET['item'] : null;
+if ($equipmentSelected) {
+  $catalog = Equipment::getByType($equipmentSelected);
+} else {
+  $catalog = Equipment::getAll();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,41 +35,41 @@ $vista = $section;
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles/style.css">
-  <title>Terry store</title>
+  <title><?= $vista->getTitle() ?></title>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-tecno">
-  <div class="container-fluid pb-2">
-    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=products&item=all">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=products&item=weapons">Armas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=products&item=shield">Escudos</a>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg bg-tecno">
+    <div class="container-fluid pb-2">
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=equipments">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=equipments&item=Arma">Arma</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=equipments&item=Escudo">Escudo</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
 
@@ -80,25 +77,25 @@ $vista = $section;
 
     <?PHP
 
-    require_once "pages/$vista.php";
+    require_once "pages/{$vista->getName()}.php";
 
     ?>
 
   </main>
-  <footer class="bg-dark ">
+  <footer class="bg-footer ">
     <div
-      class="container bg-dark text-light text-center d-flex flex-column justify-content-between align-items-center p-5 fw-medium fs-4 flex-lg-row">
+      class="container bg-footer text-light text-center d-flex flex-column justify-content-between align-items-center p-5 fw-medium fs-4 flex-lg-row">
       <div class="d-flex justify-content-center gap-5 align-items-center text-center mb-1">
         <div class="">
-          <a href="https://www.instagram.com/leo.orellana_/">
+          <a class="m-0" href="https://www.instagram.com/leo.orellana_/">
             <img class="img-fluid" src="images/footer/instagram-logo.svg" alt="icono de instagram" />
           </a>
         </div>
         <div class="">
-          <p>Leonardo Orellana</p>
+          <p class="m-0">Leonardo Orellana</p>
         </div>
         <div class="">
-          <a href="https://www.linkedin.com/in/leonardo-orellana-998740222/?originalSubdomain=ar">
+          <a class="m-0" href="https://www.linkedin.com/in/leonardo-orellana-998740222/?originalSubdomain=ar">
             <img class="img-fluid" src="images/footer/linkeding-logo.svg" alt="linkedin logo" />
           </a>
         </div>
@@ -108,7 +105,7 @@ $vista = $section;
       </div>
       <div class="">
         <div class="">
-          <p>leonardo.orellana@davinci.edu.ar</p>
+          <p class="m-0">leonardo.orellana@davinci.edu.ar</p>
         </div>
       </div>
     </div>

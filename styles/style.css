@@ -13,6 +13,9 @@
     --primary-color: #038c33;
     --secondary: #71E1FF;
     --terciary: #00E4FF;
+    --neutral: #05141C;
+    --gray: #B0B09E;
+
 
 }
 
@@ -31,6 +34,8 @@ h4,
 h5 {
     font-family: "Uncial Antiqua", system-ui;
     color: var(--secondary);
+    color: var(--secondary) !important;
+    text-shadow: 8px 0px 5px #002781 !important;
 }
 
 p {
@@ -38,6 +43,15 @@ p {
     font-size: 1.2rem;
     line-height: 1.9rem;
     color: #FFFFEB;
+}
+
+.text-sheika-style {
+    color: var(--secondary) !important;
+    text-shadow: 8px 0px 5px #002781 !important;
+}
+
+.text-sheyka-style-gray {
+    color: var(--gray) !important;
 }
 
 body::after {
@@ -122,10 +136,11 @@ body::after {
 
 .home-container {
     backdrop-filter: blur(2px);
-    background-image: url(../images/test/fondo.jpg);
+    /* background-image: url(../images/test/fondo.jpg); */
     background-position-y: -727px;
-    width: 95vw;
+    /* width: 100vw; */
     margin-top: 30px;
+    border: red solid 1px;
     /* background: linear-gradient(rgb(3 140 51 / 15%), rgb(30 198 217 / 19%)), rgb(19 34 75 / 4%);
     backdrop-filter: blur(3px); */
 }
@@ -139,10 +154,21 @@ h1 {
 .terry-image {
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
     transition: transform 0.5s ease;
+    position: absolute;
+    left: 0;
+    top: -50px;
+    bottom: 0px;
+    max-height: 520px;
 }
 
 .terry-image:hover {
     transform: scale(1.03);
+}
+
+.terry-image-container {
+    min-height: 470px;
+    max-height: 470px;
+    height: 100%;
 }
 
 /* Ajuste para móviles pequeños */
@@ -395,13 +421,6 @@ h1 {
     }
 }
 
-
-
-
-
-
-
-
 /* TEST CARD */
 
 .card-img-back {
@@ -411,10 +430,10 @@ h1 {
 .btn-custom {
     /* background: var(--terciary);
     color: var(--secondary); */
-    background: linear-gradient(90deg, var(--secondary), var(--primary-color));
+    background: linear-gradient(90deg, var(--terciary), var(--primary-color));
     color: white;
     border: none;
-    transition: all 2s;
+    transition: background-color 0.3s ease;
 
 }
 
@@ -473,32 +492,34 @@ h1 {
 }
 
 
-
-
-
-/* Extra small (XS) - <576px
-@media (max-width: 575.98px) {
-    .home-container {
-      background-position-y: -680px;
+/* Small (SM) - ≥576px */
+@media (min-width: 534px) and (max-width: 767.98px) {
+    .terry-image-container {
+        max-height: 522px;
+        height: 100%;
     }
-  }
-  
-  /* Small (SM) - ≥576px */
-/* @media (min-width: 576px) and (max-width: 767.98px) {
-    .home-container {
-      background-position-y: -680px;
 
+    .terry-image {
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+        transition: transform 0.5s ease;
+        position: absolute;
+        top: -50px;
+        left: 20%;
+        bottom: 0px;
+        max-height: 522px;
     }
-  } */
+}
 
 /* Medium (MD) - ≥768px */
-/* @media (min-width: 768px) and (max-width: 991.98px) {
-    .home-container {
-      background-position-y: -1067px;
-      height: 65vh;
-
+@media (min-width: 768px) {
+    .terry-image {
+        position: absolute;
+        top: -50px;
+        left: 20%;
+        bottom: 0px;
+        max-height: 600px;
     }
-  } */
+  } 
 
 /* Large (LG) - ≥992px */
 /* @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -526,3 +547,153 @@ h1 {
       height: 90vh;
     }
   }  */
+
+
+
+/* --------------------------------------------------
+   Campos de formulario personalizados
+-------------------------------------------------- */
+
+/* Base para inputs, textarea y selects */
+.form-control-custom,
+.form-select-custom,
+textarea.form-control-custom {
+    font: inherit;
+    background-color: var(--background-principal-light-20);
+    /* fondo */
+    color: #fff;
+    /* texto */
+    border: 1px solid var(--secondary);
+    /* borde */
+    border-radius: .375rem;
+    /* mismo que Bootstrap */
+    padding: .5rem .75rem;
+    transition: background-color .3s, border-color .3s;
+}
+
+/* Placeholder */
+.form-control-custom::placeholder,
+textarea.form-control-custom::placeholder {
+    color: var(--secondary);
+    opacity: 1;
+}
+
+/* Select placeholder (opción deshabilitada) */
+.form-select-custom option[value=""] {
+    color: var(--secondary);
+}
+
+/* Efecto hover */
+.form-control-custom:hover,
+.form-select-custom:hover,
+textarea.form-control-custom:hover {
+    background-color: var(--background-principal-light-50);
+}
+
+/* Estado focus */
+.form-control-custom:focus,
+.form-select-custom:focus,
+textarea.form-control-custom:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--background-principal-light-50);
+    box-shadow: 0 0 0 .25rem rgba(3, 140, 51, .25);
+    color: var(--secondary);
+}
+
+.form-select-custom:focus {
+    background-color: var(--background-principal-light-100) !important;
+    opacity: 0.5;
+}
+
+/* Disabled */
+.form-control-custom:disabled,
+.form-select-custom:disabled,
+textarea.form-control-custom:disabled {
+    background-color: var(--background-principal-light-50);
+    cursor: not-allowed;
+}
+
+.form-select-custom::-ms-expand {
+    background-color: var(--background-principal-light-20);
+}
+
+
+/* ------------------------------------ */
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.btn-upload {
+    font: inherit;
+    background-color: var(--background-principal-light-20);
+    color: var(--secondary);
+    padding: 10px;
+    border: 1px solid var(--secondary);
+    border-radius: .375rem;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-upload:hover {
+    font: inherit;
+    background-color: var(--background-principal-light-50);
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    border-radius: .375rem;
+}
+
+.bg-footer {
+    background-color: rgb(0 6 12) !important;
+}
+
+/* 1) Overlay de estrellas Sheikah detrás de todo */
+
+.sheikah-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('images/sheikah-stars.png') center/cover no-repeat;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* 2) Divisor decorativo */
+.divider {
+    height: 4px;
+    background: #71E1FF;
+    background: #71E1FF;
+    background: #71E1FF;
+    background: linear-gradient(101deg, rgba(113, 225, 255, 1) 0%, rgba(164, 168, 169, 0) 79%);
+    border-radius: 2px;
+}
+
+/* 3) Imagen de Terry con borde glow */
+.about-terry-img {
+    max-width: 300px;
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+/* 4) Cards de valores */
+.value-card {
+    background: rgba(19, 34, 75, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: .5rem;
+    color: #fff;
+    transition: transform .3s;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Asegurar que el contenido real esté por encima del overlay */
+#about-terry .container {
+    position: relative;
+    z-index: 2;
+}
