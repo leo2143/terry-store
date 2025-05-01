@@ -66,6 +66,9 @@ if ($equipmentSelected) {
           <li class="nav-item">
             <a class="nav-link" href="index.php?page=equipments&item=Escudo">Escudo</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?page=alumno">Alumno</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -82,34 +85,42 @@ if ($equipmentSelected) {
     ?>
 
   </main>
-  <footer class="bg-footer ">
-    <div
-      class="container bg-footer text-light text-center d-flex flex-column justify-content-between align-items-center p-5 fw-medium fs-4 flex-lg-row">
-      <div class="d-flex justify-content-center gap-5 align-items-center text-center mb-1">
-        <div class="">
-          <a class="m-0" href="https://www.instagram.com/leo.orellana_/">
-            <img class="img-fluid" src="images/footer/instagram-logo.svg" alt="icono de instagram" />
+  <footer class="bg-dark text-light py-4 mt-5 border-seconday-sheika ">
+  <div class="container">
+    <div class="row text-center text-md-start align-items-center g-4">
+      
+      <div class="col-12 col-md-4">
+        <h2 class="h4 fw-bold text-sheika-style">Terry Store</h2>
+        <p class="small">Tu tienda confiable en Hyrule. Armas, escudos y equipo con carisma bokoblin.</p>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <h2 class="h4 text-uppercase text-sheika-style">Secciones</h2>
+        <ul class="list-unstyled">
+          <li><a href="index.php?page=about-terry" class="text-light text-decoration-none">Sobre Terry</a></li>
+          <li><a href="index.php?page=alumno" class="text-light text-decoration-none">Alumno</a></li>
+          <li><a href="index.php?page=about-terry#Faq" class="text-light text-decoration-none">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-4 text-md-end">
+        <p class="mb-1">Creado por <strong>Leonardo Orellana</strong></p>
+        <div class="d-flex justify-content-center justify-content-md-end gap-3">
+          <a href="https://www.instagram.com/leo.orellana_/" target="_blank">
+            <img src="images/footer/instagram-logo.svg" alt="Instagram" width="32">
+          </a>
+          <a href="https://www.linkedin.com/in/leonardo-orellana-998740222/" target="_blank">
+            <img src="images/footer/linkeding-logo.svg" alt="LinkedIn" width="32">
           </a>
         </div>
-        <div class="">
-          <p class="m-0">Leonardo Orellana</p>
-        </div>
-        <div class="">
-          <a class="m-0" href="https://www.linkedin.com/in/leonardo-orellana-998740222/?originalSubdomain=ar">
-            <img class="img-fluid" src="images/footer/linkeding-logo.svg" alt="linkedin logo" />
-          </a>
-        </div>
       </div>
-      <div class="">
-        <img class="img-fluid rounded-5" src="images/footer/foto-de-mi.svg" alt="foto retrato propia" />
-      </div>
-      <div class="">
-        <div class="">
-          <p class="m-0">leonardo.orellana@davinci.edu.ar</p>
-        </div>
-      </div>
+
     </div>
-  </footer>
+    <hr class="border-secondary mt-4">
+    <p class="text-center small m-0">&copy; 2025 Terry Store | Orellana leonardo.</p>
+  </div>
+</footer>
+
 
 </body>
 

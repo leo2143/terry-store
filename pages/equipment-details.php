@@ -17,7 +17,7 @@ $item = Equipment::getByid($productId);
     <div class="container d-flex flex-column justify-content-center align-items-center" id="info-container">
       <div class="container pt-2  pb-4" title="title product and price">
         <h2><?= $item->getName() ?></h2>
-        <h3><img src="images/rupia.png" alt="icono" width="20" height="30" class="me-2"> <?= $item->getPrice(); ?></h3>
+        <h3><img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2"> <?= $item->getPrice(); ?></h3>
       </div>
 
       <div class="container d-flex flex-column gap-2  " id="botones">
@@ -33,7 +33,7 @@ $item = Equipment::getByid($productId);
 
   </div>
 
-  <div class="container">
+  <div class="container d-flex flex-column gap-3">
 
     <h3>Especificaciones</h3>
 
@@ -91,13 +91,18 @@ $item = Equipment::getByid($productId);
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title fs-5" id="exampleModalLabel">El producto fue agregado al carrito</h3>
+    <div class="modal-content border-0 rounded-4 shadow-lg bg-dark text-light">
+      <div class="modal-header border-0">
+        <h3 class="modal-title fs-4" id="exampleModalLabel">¡Producto agregado al carrito!</h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <div class="modal-body gap-3 d-flex flex-column align-items-center">
-        <button type="button" class="btn btn-custom  w-50" onclick="window.location.href='index.html'">Ir al carrito</button>
-        <button type="button" class="btn btn-secondary w-50" data-bs-dismiss="modal">Seguir comprando</button>
+      <div class="modal-body d-flex flex-column align-items-center gap-4 py-4">
+        <button type="button" class="btn btn-custom w-75 py-2 fw-semibold" onclick="window.location.href='index.php'">
+          Ir al carrito
+        </button>
+        <button type="button" class="btn btn-outline-light w-75 py-2 fw-semibold" data-bs-dismiss="modal">
+          Seguir comprando
+        </button>
       </div>
     </div>
   </div>

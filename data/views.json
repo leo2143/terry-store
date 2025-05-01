@@ -41,5 +41,17 @@
             "title": "detalle del equipamiento",
             "active": 1,
             "restricted": 0
+        },
+        {
+            "name": "formulario",
+            "title": "formulario get",
+            "active": 1,
+            "restricted": 0
+        },
+        {
+            "name": "alumno",
+            "title": "alumno",
+            "active": 1,
+            "restricted": 0
         }
     ]

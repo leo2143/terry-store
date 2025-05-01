@@ -2,9 +2,9 @@
 require_once 'class/Comment.php';
 $comments = Comment::getAll();
 ?>
-<section class="opinions-section container pb-5">
+<section class="opinions-section container pb-5  pt-5">
   <div class="text-center mb-4">
-    <h2 class="display-6 text-light">Comentarios del Reino</h2>
+    <h2 class="display-5 text-sheika-style">Comentarios del Reino</h2>
     <p class="  fst-italic text-light">¡Deja tu marca en las runas de Terry!</p>
   </div>
 
@@ -38,10 +38,10 @@ $comments = Comment::getAll();
     <div class="col-12">
       <div class=" bg-secondary-light-20 border-0 p-4 shadow-sm">
         <h3 class=" mb-3">Deja tu comentario</h3>
-        <form action="index.php?page=opinions&action=add" method="POST" enctype="multipart/form-data">
+        <form action="index.php?page=formulario&action=add" method="post">
           <div class="mb-3">
-            <label for="heroName" class="form-label text-light">Nombre / Héroe</label>
-            <input type="text" class="form-control form-control-custom" id="heroName" name="heroName" placeholder="Link, Zelda, tú mismo…" required>
+            <label for="name" class="form-label text-light">Nombre</label>
+            <input type="text" class="form-control form-control-custom" id="name" name="name" placeholder="Link, Zelda, tú mismo…" required>
           </div>
 
           <div class="mb-3">
