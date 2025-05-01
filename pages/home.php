@@ -16,8 +16,8 @@
           <h1 class="display-3 text-center text-md-start mb-3 d-none d-md-block">¡Bienvenido viajero!</h1>
 
           <p class="lead text-center text-md-start mb-4">
-            Soy Terry, el mercader más carismático de Hyrule. He recorrido montañas, desiertos y praderas
-            para traerte lo mejor en armas, escudos y armaduras legendarias.
+            Soy <strong>Terry </strong> , el mercader más carismático de Hyrule. He recorrido montañas, desiertos y praderas
+            para traerte lo mejor en <strong>armas </strong>, <strong>escudos</strong> y <strong>armaduras legendarias</strong>.
           </p>
           <div class="d-grid col-md-10 col-lg-8 mx-auto ms-md-0">
             <a class="btn btn-custom btn-lg py-3" href="index.php?page=equipments">Explorar tienda</a>

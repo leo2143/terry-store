@@ -1,4 +1,7 @@
 <?php
+
+use Dom\Text;
+
 class Equipment
 {
     private  $id;
@@ -19,8 +22,7 @@ class Equipment
      * Retorna el catálogo de equipamientos completo
      * @return array
      */
-    public static function getAll(): array
-    {
+    public static function getAll(): array{
         $allItems = [];
 
         $JSON = file_get_contents('data/catalog.json');
@@ -60,8 +62,7 @@ class Equipment
      * @param int $id ID del producto a buscar
      * @return Equipment
      */
-    public static function getById(int $id): ?Equipment
-    {
+    public static function getById(int $id): ?Equipment{
         
         $catalogo = self::getAll();
 
@@ -97,8 +98,7 @@ class Equipment
      * @param string $type Tipo a buscar ('arma' o 'escudo')
      * @return array
      */
-   public static function getByType(string $type): array
-    {
+    public static function getByType(string $type): array{
         
         $resultado = [];
         $catalogo = self::getAll();
@@ -111,6 +111,29 @@ class Equipment
         }
 
         return $resultado;
+    }
+
+/**
+ * Reduce la descripción a un máximo de caracteres
+ *
+ * @param int $maxCharacters Cantidad máxima de caracteres permitidos (por defecto 120).
+ * @return string Descripción reducida con puntos suspensivos si fue recortada.
+ */
+    public function reduceDescription($maxCharacters = 120) : string {
+        $text = trim($this->description);
+    
+        if (mb_strlen($text) <= $maxCharacters) {
+            return $text;
+        }
+    
+        $trimmedText = mb_substr($text, 0, $maxCharacters);
+        $lastSpace = mb_strrpos($trimmedText, ' ');
+    
+        if ($lastSpace !== false) {
+            $trimmedText = mb_substr($trimmedText, 0, $lastSpace) . "...";
+        }
+    
+        return $trimmedText ;
     }
 
     /**
@@ -332,4 +355,6 @@ class Equipment
 
         return $this;
     }
+
 }
+
