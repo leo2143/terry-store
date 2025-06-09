@@ -1,5 +1,6 @@
 :root {
 
+
     --background-secondary-light-100: #0A467B;
     --background-principal-light-100: #236693;
 
@@ -10,7 +11,13 @@
     --background-principal-light-20: #2366935b;
 
     --primary-color: #038c33;
-    --secondary: #1EC6D9;
+    --secondary: #71E1FF;
+    --terciary: #00E4FF;
+    --neutral: #004d5f;
+    --neutral-dark: #13224b;
+
+    --gray: #B0B09E;
+
 
 }
 
@@ -18,7 +25,7 @@
 body {
     margin: 0;
     line-height: normal;
-    background-image: url(../images/background-pats.png);
+    background-image: url(../images/background-pats4.png);
     background-size: 400px;
 }
 
@@ -28,67 +35,217 @@ h3,
 h4,
 h5 {
     font-family: "Uncial Antiqua", system-ui;
-    color: white;
+    color: var(--secondary);
+    color: var(--secondary) !important;
+    text-shadow: 8px 0px 5px #002781 !important;
 }
 
 p {
     font-family: "EB Garamond", serif;
     font-size: 1.2rem;
     line-height: 1.9rem;
-    color: white;
+    color: #FFFFEB;
+}
+strong{
+    font-family: "EB Garamond", serif;
+    font-weight: 600;
+    color: var(--secondary);
 }
 
-body::before {
+.text-sheika-style {
+    color: var(--secondary) !important;
+    text-shadow:
+    0 0 5px #002781,
+    0 0 10px #002781,
+    0 0 15px #002781 !important;
+}
+
+.text-sheyka-style-gray {
+    color: var(--gray) !important;
+}
+
+body::after {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: -1;
-
+    z-index: 1;
     box-shadow:
         inset 0 50px 100px -60px var(--background-principal-light-100),
-        /* top */
         inset 0 -50px 100px -60px var(--background-secondary-light-100),
-        /* bottom */
         inset 50px 0 100px -60px var(--background-principal-light-100),
-        /* left */
         inset -50px 0 100px -60px var(--background-secondary-light-100);
-    /* right */
 }
+/* Faq acordion styles */
+.accordion-button {
+    font-family: inherit;
+    background-color: var(--neutral-dark);
+    font-weight: 500;
+    border-radius: 0;
+    color: var(--secondary);
+    text-shadow: 8px 0px 5px #002781;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--neutral-dark);
+    color: var(--secondary);
+    text-shadow: 8px 0px 5px #002781;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.accordion-item {
+    font-family: inherit;
+    background-color: var(--secondary);
+    border: 3px solid var(--neutral);
+}
+
+.accordion-body {
+    font-family: inherit;
+    background-color: var(--hyrule-call-to-action-light);
+    color: var(--hyrule-text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 1rem;
+}
+.accordion-button::after{
+    filter: invert(1);
+}
+
+
+.navbar {
+    background-repeat: repeat-x;
+    background-position-y: -44px;
+    background-size: 364px;
+    background-image: url(../images/nav-patron.png);
+}
+
+.navbar-toggler {
+    border-color: white;
+    /* Cambia el borde del botón a blanco */
+}
+
+.navbar-toggler-icon {
+    background-image: url("../images/icons/list.svg");
+    /* Cambia el ícono a negro */
+}
+
 
 
 .bg-tecno {
-    background-color: #23669385;
     color: white;
+    min-height: 100px;
 }
 
 .navbar a {
+    position: relative;
     color: var(--secondary);
 }
 
-
-/* figma */
-.home-container {
+.navbar a:hover {
     position: relative;
-    color: white;
-    backdrop-filter: blur(2px);
-    border-radius: 10px;
-    background: linear-gradient(241.94deg, rgba(57, 49, 41, 0.1), rgba(217, 217, 217, 0.1));
-    width: 100%;
-    height: 583px;
+    color: var(--secondary);
 }
 
-.terry-home-image-container {
-    width: 30%;
-}
-
-.terry-home-image {
+.navbar a::after {
+    content: "";
     position: absolute;
-    top: 52px;
-    width: 451px;
-    left: -30px;
-    object-fit: cover;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 5px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 19px 6px var(--terciary);
+    background-color: var(--terciary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+
 }
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+    /* al hacer hover, aparece */
+}
+
+
+
+/* ---------------------estilos HOME-------------------------- */
+
+.w-95 {
+    width: 95vw;
+}
+
+
+.home-container {
+    backdrop-filter: blur(2px);
+    /* background-image: url(../images/test/fondo.jpg); */
+    background-position-y: -727px;
+    /* width: 100vw; */
+    margin-top: 30px;
+    border: var(--neutral) solid 1px;
+    /* background: linear-gradient(rgb(3 140 51 / 15%), rgb(30 198 217 / 19%)), rgb(19 34 75 / 4%);
+    backdrop-filter: blur(3px); */
+}
+
+.home-container p,
+h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+
+}
+
+.terry-image {
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+    transition: transform 0.5s ease;
+    position: absolute;
+    left: 0;
+    top: -50px;
+    bottom: 0px;
+    max-height: 520px;
+}
+
+.terry-image:hover {
+    transform: scale(1.03);
+}
+
+.terry-image-container {
+    min-height: 470px;
+    max-height: 470px;
+    height: 100%;
+}
+
+/* Ajuste para móviles pequeños */
+@media (max-width: 576px) {
+    .home-title {
+        font-size: 2.2rem !important;
+    }
+
+    .terry-home-image {
+        max-height: 50vh !important;
+    }
+}
+
+
+
+/* ---------------------estilos HOME-------------------------- */
+
+
+
+/* --------------------------product detail estilos ------------------------ */
+.product-detail {
+    background-image: url(../images/traveler-icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* --------------------------product detail estilos ------------------------ */
+
+
 
 .star {
     clip-path: polygon(51% 0, 63% 31%, 99% 34%, 72% 56%, 79% 91%, 49% 79%, 21% 91%, 28% 60%, 2% 35%, 38% 31%);
@@ -161,6 +318,9 @@ body::before {
     from { box-shadow: 0 0 10px #00d1ff44; }
     to { box-shadow: 0 0 20px #00d1ff88; }
   } */
+
+
+
 /* Efecto de gradiente animado (estela) */
 .glow-wrapper {
     position: relative;
@@ -174,20 +334,18 @@ body::before {
 
 /* Fondo animado 1*/
 
-.glow-wrapper::before {
+.opinions-container::before {
     content: "";
+    border-radius: 19px;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(135deg,
-            rgba(0, 168, 255, 0.7) 0%,
-            rgba(0, 255, 136, 0.7) 50%,
-            rgba(0, 168, 255, 0.7) 100%);
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.7) 0%, rgba(0, 255, 136, 0.7) 50%, rgba(0, 168, 255, 0.7) 100%);
     background-size: 200% 200%;
     animation: gradientFlow 6s ease infinite;
-    z-index: 0;
+    z-index: -1;
     opacity: 0.5;
 }
 
@@ -215,41 +373,379 @@ body::before {
     box-sizing: border-box;
     border-radius: 1rem;
 }
+
 /* estilos productos */
+.card-1 {
+    background-image: linear-gradient(163deg, var(--secondary) 0%, var(--primary-color) 100%);
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--bs-border-radius);
+    transition: all .3s;
+    border-width: var(--bs-border-width);
+    ;
+}
 
 .card {
     position: relative;
-    box-shadow: 0px 0px 58px 15px rgba(6, 115, 64, 0.5) inset, 0px 0px 30px 24px rgba(3, 140, 51, 0.7) inset, 3px 7px 16px 7px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(43px);
-    border-radius: 17px;
+    border-radius: var(--bs-border-radius);
     background-color: #13224b9c;
     color: white;
+    /* box-shadow: 0px 0px 4px 4px rgba(6, 115, 64, 0.5) inset, 0px 0px 32px 8px rgba(3, 140, 51, 0.7) inset, 18px 15px 6px 18px rgba(0, 0, 0, 0.25); */
 }
-.card-img-back{
+
+.card:hover {
+    transform: scale(0.98);
+    border-radius: var(--bs-border-radius);
+}
+
+.card-1:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+
+
+/* TEST CARD */
+
+/* From Uiverse.io by ElSombrero2 */
+
+
+.card::before {
+    opacity: 0;
+    transition: opacity 300ms;
+    border-radius: var(--bs-border-radius);
+    content: " ";
+    display: block;
+    background: white;
+    width: 5px;
+    height: 50px;
+    position: absolute;
+    filter: blur(10px);
+    overflow: hidden;
+}
+
+.card-1::before {
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 110%;
+    border-radius: var(--bs-border-radius);
+
+    background: linear-gradient(var(--primary-color), var(--secondary));
+    transition: opacity 300ms;
+    animation: rotation_9018 8000ms infinite linear;
+    animation-play-state: paused;
+}
+
+.card-1:hover .card::before {
+    opacity: 1;
+}
+
+.card-1:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.card-1::after {
+    position: absolute;
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 110%;
+    border-radius: var(--bs-border-radius);
+
+    backdrop-filter: blur(10px);
+}
+
+@keyframes rotation_9018 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* TEST CARD */
+
+.card-img-back {
     opacity: 0.2;
 }
 
 .btn-custom {
-    background: linear-gradient(90deg, #038c33, #1ec6d9);
+    /* background: var(--terciary);
+    color: var(--secondary); */
+    background: linear-gradient(90deg, var(--terciary), var(--primary-color));
     color: white;
     border: none;
-    transition: all 2s;
+    transition: background-color 0.3s ease;
 
 }
 
 .btn-custom:hover {
     background: linear-gradient(90deg, rgba(3, 140, 51, 0.5), rgba(30, 198, 217, 0.5));
     color: white;
-    transition: opacity 0.4s ease;
+    transition: all 0.4s ease;
 }
-.card-title{
+
+.card-title {
+    min-height: 60px;
     min-height: 60px;
 }
+
+.equipments-description{
+    min-height: 120px;
+    max-height: 120px ;
+}
+
 /* Contenedor del borde animado */
 /* Contenedor del borde animado */
 
 
-.not-found-image{
- height: 100vh;
- width: auto;
+.not-found-image {
+    height: 100vh;
+    width: auto;
+}
+
+
+/* estilos boton */
+.button-container {
+    position: relative;
+    background: var(--secondary);
+    transition: all 0.4s ease;
+    border-radius: var(--bs-border-radius);
+}
+
+.button-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 0.9em;
+    z-index: -10;
+    filter: blur(0);
+    transition: all 0.4s ease;
+}
+
+.button-container:hover::before {
+    background: var(--secondary);
+    filter: blur(1.2em);
+}
+
+.button-container:active::before {
+    filter: blur(0.2em);
+}
+
+.sheika-container {
+    backdrop-filter: blur(5px);
+    border: #005064 solid 3px;
+
+}
+
+
+/* Small (SM) - ≥576px */
+@media (min-width: 534px) and (max-width: 767.98px) {
+    .terry-image-container {
+        max-height: 522px;
+        height: 100%;
+    }
+
+    .terry-image {
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+        transition: transform 0.5s ease;
+        position: absolute;
+        top: -50px;
+        left: 20%;
+        bottom: 0px;
+        max-height: 522px;
+    }
+}
+
+/* Medium (MD) - ≥768px */
+@media (min-width: 768px) {
+    .terry-image {
+        position: absolute;
+        top: -50px;
+        left: 20%;
+        bottom: 0px;
+        max-height: 600px;
+    }
+  } 
+
+/* Large (LG) - ≥992px */
+/* @media (min-width: 992px) and (max-width: 1199.98px) {
+    .home-container {
+      background-position-y: -931px;
+      height: 75vh;
+
+
+    }
+  } */
+
+/* Extra Large (XL) - ≥1200px */
+/* @media (min-width: 1200px) and (max-width: 1399.98px) {
+    .home-container {
+      background-position-y: -804px;
+      height: 75vh;
+
+    }
+  } */
+
+/* Extra Extra Large (XXL) - ≥1400px */
+/* @media (min-width: 1400px) {
+    .home-container {
+      background-position-y: -800px;
+      height: 90vh;
+    }
+  }  */
+
+
+
+/* --------------------------------------------------
+   Campos de formulario personalizados
+-------------------------------------------------- */
+
+/* Base para inputs, textarea y selects */
+.form-control-custom,
+.form-select-custom,
+textarea.form-control-custom {
+    font: inherit;
+    background-color: var(--background-principal-light-20);
+    /* fondo */
+    color: #fff;
+    /* texto */
+    border: 1px solid var(--secondary);
+    /* borde */
+    border-radius: .375rem;
+    /* mismo que Bootstrap */
+    padding: .5rem .75rem;
+    transition: background-color .3s, border-color .3s;
+}
+
+/* Placeholder */
+.form-control-custom::placeholder,
+textarea.form-control-custom::placeholder {
+    color: var(--secondary);
+    opacity: 1;
+}
+
+/* Select placeholder (opción deshabilitada) */
+.form-select-custom option[value=""] {
+    color: var(--secondary);
+}
+
+/* Efecto hover */
+.form-control-custom:hover,
+.form-select-custom:hover,
+textarea.form-control-custom:hover {
+    background-color: var(--background-principal-light-50);
+}
+
+/* Estado focus */
+.form-control-custom:focus,
+.form-select-custom:focus,
+textarea.form-control-custom:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--background-principal-light-50);
+    box-shadow: 0 0 0 .25rem rgba(3, 140, 51, .25);
+    color: var(--secondary);
+}
+
+.form-select-custom:focus {
+    background-color: var(--background-principal-light-100) !important;
+    opacity: 0.5;
+}
+
+/* Disabled */
+.form-control-custom:disabled,
+.form-select-custom:disabled,
+textarea.form-control-custom:disabled {
+    background-color: var(--background-principal-light-50);
+    cursor: not-allowed;
+}
+
+.form-select-custom::-ms-expand {
+    background-color: var(--background-principal-light-20);
+}
+
+
+/* ------------------------------------ */
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.btn-upload {
+    font: inherit;
+    background-color: var(--background-principal-light-20);
+    color: var(--secondary);
+    padding: 10px;
+    border: 1px solid var(--secondary);
+    border-radius: .375rem;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-upload:hover {
+    font: inherit;
+    background-color: var(--background-principal-light-50);
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    border-radius: .375rem;
+}
+
+.bg-footer {
+    background-color: rgb(0 6 12) !important;
+}
+
+/* 1) Overlay de estrellas Sheikah detrás de todo */
+
+.sheikah-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('images/sheikah-stars.png') center/cover no-repeat;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* 2) Divisor decorativo */
+.divider {
+    height: 4px;
+    background: linear-gradient(101deg,rgb(0, 77, 95) 0%, rgba(164, 168, 169, 0) 79%);
+    border-radius: 2px;
+    
+}
+
+/* 3) Imagen de Terry con borde glow */
+.about-terry-img {
+    max-width: 300px;
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+/* 4) Cards de valores */
+.value-card {
+    background: rgba(19, 34, 75, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: .5rem;
+    color: #fff;
+    transition: transform .3s;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Asegurar que el contenido real esté por encima del overlay */
+#about-terry .container {
+    position: relative;
+    z-index: 2;
 }

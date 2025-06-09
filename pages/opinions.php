@@ -1,60 +1,75 @@
 <?PHP
-$comments = [
-  [
-    "nombre" => "Zelda — Princesa de Hyrule",
-    "avatar" => "images/icons/zelda.png",
-    "comment" => "Confieso que desconfiaba al principio. Una tienda conectada a una piedra ancestral parecía inestable…pero me equivoqué.La interfaz es intuitiva, los pedidos llegan con precisión, y hasta recibí un escudo con detalles en oro gerudo.Terry ha logrado lo impensado: unir tradición y tecnología con un toque encantador.”",
-    "cantidad-estrellas" => 4,
-    "fecha_ingreso" => "2024-02-08",
-  ],
-  [
-    "nombre" => "🦅 Revali — Campeón Rito",
-    "avatar" => "images/icons/revall.png",
-    "comment" => "No suelo alabar a vendedores... pero admito que el sistema de Terry me sorprendió. Pude hacer el pedido desde el aire y me lo entregaron antes de aterrizar. Eso sí, la espada que pedí no es tan elegante como yo, pero bueno, eso ya es mucho pedir.”",
-    "cantidad-estrellas" => 4,
-    "fecha_ingreso" => "2024-02-08",
-  ],
-  [
-    "nombre" => "Link — Guerro de Hyrule",
-    "avatar" => "images/icons/link.png",
-    "comment" => "Recibí el escudo justo a tiempo antes de enfrentar a un Lynel. Aguantó más que el último que conseguí en el Castillo. El proceso fue tan rápido que casi me olvido de que lo pedí. Lo único que no entendí fue por qué venía con una calcomanía de la cara de Terry…",
-    "cantidad-estrellas" => 4,
-    "fecha_ingreso" => "2024-02-08"
-  ],
-]
-
+require_once 'class/Comment.php';
+$comments = Comment::getAll();
 ?>
-<section class="opinions-section container">
+<section class="opinions-section container pb-5">
+  <div class="text-center mb-4">
+    <h2 class="display-6 text-light">Comentarios del Reino</h2>
+    <p class="  fst-italic text-light">¡Deja tu marca en las runas de Terry!</p>
+  </div>
 
+  <div class="glow-wrapper d-flex flex-column gap-4 align-items-center justify-content-center rounded-4 mt-5">
+    <?php foreach ($comments as $comment): ?>
+      <div class="opinions-container p-5 d-flex flex-column flex-lg-row align-items-lg-start align-items-center rounded-4 gap-3">
 
+        <div class="opinions-title d-flex align-items-center gap-5">
 
-  <div class="glow-wrapper d-flex align-items-center justify-content-center rounded-4 mt-5">
-    <div class="opinions-container p-5 d-flex flex-column flex-lg-row align-items-lg-start align-items-center rounded-4 gap-3">
+          <img src="images/icons/<?= $comment->getImgAvatar(); ?>.png" alt=<?= $comment->getImgAvatar(); ?>>
+        </div>
+        <div class="opinions-text ps-lg-5 d-flex flex-column">
+          <h3><?= $comment->getName(); ?></h3>
 
-      <div class="opinions-title d-flex align-items-center gap-5">
-        <img src="images/icons/image 18.png" alt="">
-      </div>
-      <div class="opinions-text ps-lg-5 d-flex flex-column">
-        <h3>Zelda — Princesa de Hyrule</h3>
+          <p>
+            <?= $comment->getDescription(); ?>
+          </p>
 
-        <p>Confieso que desconfiaba al principio. Una tienda conectada a una piedra ancestral parecía inestable…
-          pero
-          me equivoqué.La interfaz es intuitiva, los pedidos llegan con precisión, y hasta recibí un escudo con
-          detalles en oro gerudo.Terry ha logrado lo impensado: unir tradición y tecnología con un toque
-          encantador.”
-        </p>
-
-        <div class="opinions-stars-container d-flex gap-3">
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
-          <div class="star"></div>
+          <div class="opinions-stars-container d-flex gap-3">
+            <?php for ($i = 0; $i < $comment->getStartsCount(); $i++): ?>
+              <div class="star"></div>
+            <?php endfor; ?>
+          </div>
         </div>
       </div>
+    <?php endforeach; ?>
+
+  </div>
+
+  <div class="row justify-content-center mt-5 sheika-container">
+    <div class="col-12">
+      <div class=" bg-secondary-light-20 border-0 p-4 shadow-sm">
+        <h3 class=" mb-3">Deja tu comentario</h3>
+        <form action="index.php?page=opinions&action=add" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="heroName" class="form-label text-light">Nombre / Héroe</label>
+            <input type="text" class="form-control form-control-custom" id="heroName" name="heroName" placeholder="Link, Zelda, tú mismo…" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="rating" class="form-label text-light">Puntuación</label>
+            <select class="form-select form-select-custom" id="rating" name="rating" required>
+              <option value="">– Selecciona –</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="1">⭐</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="commentText" class="form-label text-light">Tu reseña</label>
+            <textarea class="form-control form-control-custom" id="commentText" name="commentText" rows="4" placeholder="¡Escribe tu experiencia con Terry!" required></textarea>
+          </div>
 
 
+          <div class="mb-3 custom-file-upload">
+            <label for="commentImage" class="btn btn-upload w-100 rounded-2">Subir imagen</label>
+            <input type="file" id="commentImage" name="commentImage" accept="image/*">
+          </div>
 
+          <button type="submit" class="btn btn-custom w-100">Enviar comentario</button>
+        </form>
+      </div>
     </div>
   </div>
 
