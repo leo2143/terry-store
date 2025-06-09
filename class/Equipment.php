@@ -1,7 +1,6 @@
 <?php
 
-use Dom\Text;
-
+require_once 'class/Connection.php';
 class Equipment
 {
     private  $id;
@@ -25,28 +24,9 @@ class Equipment
     public static function getAll(): array
     {
         $allItems = [];
+        $query = "SELECT * FROM equipments";
 
-        $JSON = file_get_contents('data/catalog.json');
-
-        $JSONData = json_decode($JSON);
-
-        foreach ($JSONData as $value) {
-
-            $equipment = new self();
-            $equipment->setId($value->id);
-            $equipment->setName($value->name);
-            $equipment->setType($value->type);
-            $equipment->setCategory($value->category);
-            $equipment->setRarity($value->rarity);
-            $equipment->setMaterial($value->material);
-            $equipment->setAbility($value->ability);
-            $equipment->setDescription($value->description);
-            $equipment->setPrice($value->price);
-            $equipment->setDateAdded($value->date_added);
-            $equipment->setImage($value->image);
-
-            $allItems[] = $equipment;
-        }
+        $allItems = (new Connection())->consultBuilder($query, self::class);
 
         return $allItems;
     }
@@ -59,15 +39,11 @@ class Equipment
     public static function getById(int $id): ?Equipment
     {
 
-        $catalogo = self::getAll();
+        $query = "SELECT * FROM equipments WHERE id = :id";
+        $params = ['id' => $id];
 
-        foreach ($catalogo as $p) {
-            if ($p->id == $id) {
-                return $p;
-            }
-        }
-
-        return null;
+        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        return $catalogo[0] ?? null;
     }
 
     /**
@@ -96,18 +72,13 @@ class Equipment
      */
     public static function getByType(string $type): array
     {
-
         $resultado = [];
-        $catalogo = self::getAll();
 
-        foreach ($catalogo as $p) {
-            if ($p->type == $type) {
+        $query = "SELECT * FROM equipments WHERE type = :type";
+        $params = ['type' => $type];
 
-                $resultado[] = $p;
-            }
-        }
-
-        return $resultado;
+        $resultado = (new Connection())->consultBuilder($query, self::class, $params);
+        return $resultado ?? null;
     }
 
     /**

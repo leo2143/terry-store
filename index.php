@@ -61,10 +61,10 @@ if ($equipmentSelected) {
               <a class="nav-link" href="index.php?page=equipments">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=equipments&item=Arma">Arma</a>
+              <a class="nav-link" href="index.php?page=equipments&item=sword">Armas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=equipments&item=Escudo">Escudo</a>
+              <a class="nav-link" href="index.php?page=equipments&item=shield">Escudos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?page=alumno">Alumno</a>
