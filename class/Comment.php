@@ -23,13 +23,6 @@ class Comment
 
         $JSON = file_get_contents('data/comment.json');
 
-        if ($JSON === false) {
-            throw new Exception("No se pudo leer el archivo del catálogo");
-        }
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception("Error al decodificar el JSON: " . json_last_error_msg());
-        }
-
         $JSONData = json_decode($JSON);
 
         foreach ($JSONData as $value) {
@@ -48,10 +41,6 @@ class Comment
 
         return $allItems;
     }
-
-
-
-
 
 
     /**
