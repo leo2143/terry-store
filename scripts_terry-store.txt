@@ -147,9 +147,13 @@ INSERT INTO equipment_features (equipment_id, feature_id) VALUES
   (15, 15); -- Rompe rocas → Aumenta daño a enemigos blindados
 
 Insert into views(name,title,active,restricted) Values
-	('about-terry','Sobre Terry',1,0),
-	('opinions','Sobre Terry',1,0),
-	('equipments','Sobre Terry',1,0),
-	('Arma','Sobre Terry',1,0),
-	('Escudo','Sobre Terry',1,0),
-	('alumno','Sobre Terry',1,0);
+
+	('home','Bienvenido',1,0),
+	('about-terry','Sobre la Tienda de Terry',1,0),
+	('opinions','Comentarios del Reino',1,0),
+	('equipments','Catalogo completo',1,0),
+	('equipment-details','details',1,0),
+	('sword','Catalogo Espadas',1,0),
+	('shield','Catalogo Escudos',1,0),
+	('alumno','Datos alumno',1,0);
+	

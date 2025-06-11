@@ -43,12 +43,16 @@ class Connection
      * @param array $params Lista de posibles parametros por los que filtrar.
      * @return array Lista de objetos instanciados de la clase especificada.
      */
-    public function consultBuilder(string $query, string $class,array $params = []): array
+    public function consultBuilder(string $query, string $class, array $params = []): array
     {
-        self::getConnection();
-        $PDOStatement = $this->db->prepare($query);
-        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, $class);
-        $PDOStatement->execute($params);
+        try {
+            self::getConnection();
+            $PDOStatement = $this->db->prepare($query);
+            $PDOStatement->setFetchMode(PDO::FETCH_CLASS, $class);
+            $PDOStatement->execute($params);
+        } catch (Exception $e) {
+            die("ocurrio un error en la consulta sql");
+        }
         return $PDOStatement->fetchAll();
     }
 }

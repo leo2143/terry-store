@@ -3,10 +3,23 @@ require_once 'class/equipment.php';
 
 
 $item = $_GET["item"] ?? null;
+$toSpanish = "";
+switch ($equipmentSelected) {
+  case "sword":
+    $toSpanish = "espadas";
+    break;
+  case "shield":
+    $toSpanish = "escudos";
+    break;
+  default:
+    $toSpanish = "Catalogo completo";
+}
+$equipmentSelected = "sword" ?? "espadas";
+
 ?>
 
 <div class="container py-5 my-5">
-  <h2 class="display-5 mb-4 text-center text-sheika-style"><?= $equipmentSelected ?? "Catalogo completo" ?></h2>
+  <h2 class="display-5 mb-4 text-center text-sheika-style"><?= $toSpanish ?></h2>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3  g-4">
 
     <?php foreach ($catalog as $item): ?>
