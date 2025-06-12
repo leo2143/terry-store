@@ -35,5 +35,5 @@ $comments = Comment::getAll();
         </tbody>
     <?PHP } ?>
     </table>
-    <a href="" class="button btn-primary">cargar nuevo equipamiento</a>
+    <a href="index.php?page=cu_comment" class="button btn-primary">cargar nuevo comentario</a>
 </div>

@@ -163,4 +163,11 @@ Insert into views(name,title,active,restricted) Values
   ('admin_categories','Panel de categorias',1,0),
   ('admin_rarities','Panel de rarezas',1,0),
   ('admin_features','Panel de features',1,0);
+
+  ('cu_equipment','Panel de equipamientos',1,0),
+  ('cu_comment','Panel de comentarios',1,0),
+  ('cu_categorie','Panel de categorias',1,0),
+  ('cu_raritie','Panel de rarezas',1,0),
+  ('cu_feature','Panel de features',1,0);
+  
 	

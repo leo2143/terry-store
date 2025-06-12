@@ -14,25 +14,21 @@ class Comment
     private $profile_image;
 
 
-    public static function create($name): Comment
+    public static function create($name)
     {
 
-        $allItems = [];
-        $query = "INSERT INTO comments (`name`) VALUES (:name)";
+        $query = "INSERT INTO comments (`equipment_id`,`username`,`profile_image`,`content`,`rating`,`created_at`) VALUES (:name)";
+        $params = ['name' => $name];
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->consultBuilder($query, self::class, $params);
     }
 
-    public static function update(): Comment
+    public static function update($id, $name)
     {
-        $allItems = [];
         $query = "INSERT INTO comments (`name`) VALUES (:name)";
+        $params = ['id' => $id, 'name' => $name];
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->consultBuilder($query, self::class, $params);
     }
 
     public static function getById($id): Comment

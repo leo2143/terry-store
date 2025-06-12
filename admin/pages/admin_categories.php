@@ -27,5 +27,5 @@ $categories = Categories::getAll();
         </tbody>
     <?PHP } ?>
     </table>
-    <a href="" class="button btn-primary">cargar nuevo equipamiento</a>
+    <a href="index.php?page=cu_categorie" class="button btn-primary">cargar nuevo equipamiento</a>
 </div>

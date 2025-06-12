@@ -28,5 +28,5 @@ $features = Features::getAll();
         </tbody>
     <?PHP } ?>
     </table>
-    <a href="" class="button btn-primary">cargar nuevo equipamiento</a>
+    <a href="index.php?page=cu_feature" class="button btn-primary">cargar nuevo equipamiento</a>
 </div>

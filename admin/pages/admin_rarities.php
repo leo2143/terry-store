@@ -28,5 +28,5 @@ $rarities = Rarities::getAll();
         </tbody>
     <?PHP } ?>
     </table>
-    <a href="" class="button btn-primary">cargar nuevo equipamiento</a>
+    <a href="index.php?page=cu_raritie" class="button btn-primary">cargar nuevo rareza</a>
 </div>
