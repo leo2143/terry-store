@@ -1,6 +1,5 @@
 <?php
 
-require_once 'class/Connection.php';
 class Equipment
 {
     private  $id;

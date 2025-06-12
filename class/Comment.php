@@ -5,39 +5,52 @@ class Comment
 
     private $name;
 
-    private $imgAvatar;
+    private $content;
 
-    private $description;
-
-    private $startsCount;
+    private $rating;
 
     private $admissionDate;
 
-    /**
-     * Retorna el catálogo de equipamientos completo
-     * @return array
-     */
+    private $profile_image;
+
+
+    public static function create($name): Comment
+    {
+
+        $allItems = [];
+        $query = "INSERT INTO comments (`name`) VALUES (:name)";
+
+        $allItems = (new Connection())->consultBuilder($query, self::class);
+
+        return $allItems[0];
+    }
+
+    public static function update(): Comment
+    {
+        $allItems = [];
+        $query = "INSERT INTO comments (`name`) VALUES (:name)";
+
+        $allItems = (new Connection())->consultBuilder($query, self::class);
+
+        return $allItems[0];
+    }
+
+    public static function getById($id): Comment
+    {
+        $query = "SELECT * FROM comments WHERE id = :id";
+        $params = ['id' => $id];
+
+        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        return $catalogo[0];
+    }
+
+
     public static function getAll(): array
     {
         $allItems = [];
+        $query = "SELECT * FROM comments";
 
-        $JSON = file_get_contents('data/comment.json');
-
-        $JSONData = json_decode($JSON);
-
-        foreach ($JSONData as $value) {
-
-            $equipment = new self();
-            $equipment->setId($value->id);
-            $equipment->setName($value->name);
-            $equipment->setDescription($value->description);
-            $equipment->setImgAvatar($value->imgAvatar);
-            $equipment->setStartsCount($value->startsCount);
-            $equipment->setAdmissionDate($value->admissionDate);
-
-
-            $allItems[] = $equipment;
-        }
+        $allItems = (new Connection())->consultBuilder($query, self::class);
 
         return $allItems;
     }
@@ -84,31 +97,11 @@ class Comment
     }
 
     /**
-     * Get the value of imgAvatar
-     */
-    public function getImgAvatar()
-    {
-        return $this->imgAvatar;
-    }
-
-    /**
-     * Set the value of imgAvatar
-     *
-     * @return  self
-     */
-    public function setImgAvatar($imgAvatar)
-    {
-        $this->imgAvatar = $imgAvatar;
-
-        return $this;
-    }
-
-    /**
      * Get the value of description
      */
-    public function getDescription()
+    public function getContent()
     {
-        return $this->description;
+        return $this->content;
     }
 
     /**
@@ -116,19 +109,19 @@ class Comment
      *
      * @return  self
      */
-    public function setDescription($description)
+    public function setContent($content)
     {
-        $this->description = $description;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get the value of startsCount
+     * Get the value of rating
      */
-    public function getStartsCount()
+    public function getRating()
     {
-        return $this->startsCount;
+        return $this->rating;
     }
 
     /**
@@ -136,9 +129,9 @@ class Comment
      *
      * @return  self
      */
-    public function setStartsCount($startsCount)
+    public function setRating($rating)
     {
-        $this->startsCount = $startsCount;
+        $this->rating = $rating;
 
         return $this;
     }
@@ -159,6 +152,26 @@ class Comment
     public function setAdmissionDate($admissionDate)
     {
         $this->admissionDate = $admissionDate;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of admissionDate
+     */
+    public function getProfileImage()
+    {
+        return $this->profile_image;
+    }
+
+    /**
+     * Set the value of admissionDate
+     *
+     * @return  self
+     */
+    public function setProfileImage($profileImage)
+    {
+        $this->profile_image = $profileImage;
 
         return $this;
     }

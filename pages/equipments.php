@@ -1,6 +1,4 @@
 <?php
-require_once 'class/equipment.php';
-
 
 $item = $_GET["item"] ?? null;
 $toSpanish = "";

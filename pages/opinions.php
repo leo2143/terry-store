@@ -1,5 +1,4 @@
 <?PHP
-require_once 'class/Comment.php';
 $comments = Comment::getAll();
 ?>
 <section class="opinions-section container pb-5  pt-5">
@@ -14,7 +13,7 @@ $comments = Comment::getAll();
 
         <div class="opinions-title d-flex align-items-center gap-5">
 
-          <img src="images/icons/<?= $comment->getImgAvatar(); ?>.png" alt=<?= $comment->getImgAvatar(); ?>>
+          <img src="images/icons/<?= $comment->getProfileImage(); ?>.png" alt=<?= $comment->getProfileImage(); ?>>
         </div>
         <div class="opinions-text ps-lg-5 d-flex flex-column">
           <h3><?= $comment->getName(); ?></h3>

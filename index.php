@@ -1,6 +1,9 @@
 <?PHP
 require_once 'class/Equipment.php';
 require_once 'class/View.php';
+require_once 'class/Connection.php';
+require_once 'class/Comment.php';
+
 
 
 $section = isset($_GET["page"]) ? $_GET["page"] : "home";

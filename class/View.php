@@ -1,5 +1,4 @@
 <?PHP
-require_once 'class/Connection.php';
 
 class View
 {
@@ -27,7 +26,7 @@ class View
         $viewInfo = (new Connection())->consultBuilder($query, self::class, $params)[0] ?? null;
 
         //SI SE ECUENTRA UNA VISTA QUE COORDINE CON LA SOLICITADA
-        if ($viewInfo->name == $viewName) {
+        if ($viewInfo != null) {
 
             //CHECKEAMOS QUE ESTÉ ACTIVA
             if ($viewInfo->getActive()) {
