@@ -1,3 +1,9 @@
+<?php
+$raritieId = $_GET["id"] ?? 0;
+$raritie;
+if($raritieId != 0 ){ $raritie = Rarities::getById($raritieId);}
+?>
+
 <div class="container">
     <div class="row justify-content-center mt-5 sheika-container">
         <div class="col-12">
@@ -5,7 +11,7 @@
                 <form action="actions/admin_raritie_acc.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label text-light">Nombre</label>
-                        <input type="text" class="form-control form-control-custom" id="name" name="name" placeholder="Link, Zelda, tú mismo…" required>
+                        <input type="text" class="form-control form-control-custom" id="name" name="name" value="<?= $raritie != 0 ? $raritie->getName() : ""; ?>" placeholder="Link, Zelda, tú mismo…" required>
                     </div>
                     <button type="submit" class="btn btn-custom w-100">Enviar</button>
                 </form>

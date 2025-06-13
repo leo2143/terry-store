@@ -1,18 +1,17 @@
-<?PHP
+<?php
 require_once '../../class/Rarities.php';
 require_once '../../class/Connection.php';
 
 $postData = $_POST;
-$fileData = $_FILES;
-
-print_r($postData);
-print_r($fileData);
-
-
 
 try {
-    Rarities::create($postData['name']);
+    if (isset($postData['id']) && is_numeric($postData['id'])) {
+        Rarities::update($postData['id'], $postData['name']);
+    } else {
+        Rarities::create($postData['name']);
+    }
 } catch (Exception $e) {
-    die("no se pudo cargar");
+    die("No se pudo cargar la rareza: " . $e->getMessage());
 }
+
 header('Location: ../index.php?page=admin_rarities');
