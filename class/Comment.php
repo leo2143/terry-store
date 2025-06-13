@@ -3,32 +3,41 @@ class Comment
 {
     private $id;
 
-    private $name;
+    private $username;
 
     private $content;
 
     private $rating;
 
-    private $admissionDate;
+    private $createAt;
 
     private $profile_image;
 
 
-    public static function create($name)
+    public static function create($equipmentId, $username, $profileImage, $content, $rating, $createAt): void
     {
+        $query = "INSERT INTO comments (`equipment_id`, `username`, `profile_image`, `content`, `rating`, `created_at`) 
+              VALUES (:equipment_id, :username, :profile_image, :content, :rating, :created_at)";
 
-        $query = "INSERT INTO comments (`equipment_id`,`username`,`profile_image`,`content`,`rating`,`created_at`) VALUES (:name)";
-        $params = ['name' => $name];
+        $params = [
+            'equipment_id' => $equipmentId,
+            'username' => $username,
+            'profile_image' => $profileImage,
+            'content' => $content,
+            'rating' => $rating,
+            'created_at' => $createAt
+        ];
 
-        (new Connection())->consultBuilder($query, self::class, $params);
+        (new Connection())->insertBuilder($query, $params);
     }
+
 
     public static function update($id, $name)
     {
         $query = "INSERT INTO comments (`name`) VALUES (:name)";
         $params = ['id' => $id, 'name' => $name];
 
-        (new Connection())->consultBuilder($query, self::class, $params);
+        (new Connection())->selectBuilder($query, self::class, $params);
     }
 
     public static function getById($id): Comment
@@ -36,7 +45,7 @@ class Comment
         $query = "SELECT * FROM comments WHERE id = :id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
     }
 
@@ -46,7 +55,7 @@ class Comment
         $allItems = [];
         $query = "SELECT * FROM comments";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
     }
@@ -75,9 +84,9 @@ class Comment
     /**
      * Get the value of name
      */
-    public function getName()
+    public function getUserName()
     {
-        return $this->name;
+        return $this->username;
     }
 
     /**
@@ -85,9 +94,9 @@ class Comment
      *
      * @return  self
      */
-    public function setName($name)
+    public function setUserName($username)
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
@@ -133,21 +142,21 @@ class Comment
     }
 
     /**
-     * Get the value of admissionDate
+     * Get the value of createAt
      */
-    public function getAdmissionDate()
+    public function getCreateAt()
     {
-        return $this->admissionDate;
+        return $this->createAt;
     }
 
     /**
-     * Set the value of admissionDate
+     * Set the value of createAt
      *
      * @return  self
      */
-    public function setAdmissionDate($admissionDate)
+    public function setCreateAt($createAt)
     {
-        $this->admissionDate = $admissionDate;
+        $this->createAt = $createAt;
 
         return $this;
     }

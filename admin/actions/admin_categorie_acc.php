@@ -1,5 +1,5 @@
 <?PHP
-require_once '../../class/Comment.php';
+require_once '../../class/Categories.php';
 require_once '../../class/Connection.php';
 
 $postData = $_POST;
@@ -12,8 +12,8 @@ print_r($fileData);
 
 
 try {
-    Comment::create(1, $postData['username'], "revall", $postData['content'], $postData['rating'], date("Y/m/d"));
+    Categories::create($postData['name']);
 } catch (Exception $e) {
     die("no se pudo cargar");
 }
-header('Location: ../index.php?sec=admin_comments');
+header('Location: ../index.php?page=admin_categories');

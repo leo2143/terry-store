@@ -1,5 +1,6 @@
 <?php
 $comments = Comment::getAll();
+
 ?>
 
 <div class="container row mb-5 mt-5 d-flex align-items-center">
@@ -20,12 +21,13 @@ $comments = Comment::getAll();
 
             <?PHP foreach ($comments as $comment) { ?>
 
+                
                 <tr>
                     <td><?= $comment->getProfileImage() ?></td>
-                    <td><?= $comment->getName() ?></td>
+                    <td><?= $comment->getUserName() ?></td>
                     <td><?= $comment->getContent() ?></td>
                     <td><?= $comment->getRating() ?></td>
-                    <td><?= $comment->getAdmissionDate() ?></td>
+                    <td><?= date("Y/m/d",$comment->getCreateAt()) ?></td>
 
                     <td><a href="" role="button" class="d-block btn btn-sm btn-warning">Editar</a>
                         <a href="" role="button" class="d-block btn btn-sm btn-danger">Eliminar</a>

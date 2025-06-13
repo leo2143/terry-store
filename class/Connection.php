@@ -14,7 +14,6 @@ class Connection
 
 
     private static ?PDO $db = null;
-//todo: verificar que este lo usa como static el profesor 
     public static function createConnection()
     {
         try {
@@ -36,14 +35,14 @@ class Connection
     }
 
     /**
-     * Ejecuta una consulta SQL y devuelve los resultados como una lista de objetos de una clase dada.
+     * Ejecuta una consulta SELECT SQL y devuelve los resultados como una lista de objetos de una clase dada.
      *
      * @param string $query Consulta SQL a ejecutar.
      * @param string $class Nombre de la clase a la que se mapearán los resultados.
      * @param array $params Lista de posibles parametros por los que filtrar.
      * @return array Lista de objetos instanciados de la clase especificada.
      */
-    public static function consultBuilder(string $query, string $class, array $params = []): array
+    public static function selectBuilder(string $query, string $class, array $params = []): array
     {
         try {
             self::getConnection();
@@ -54,5 +53,22 @@ class Connection
             die("ocurrio un error en la consulta sql");
         }
         return $PDOStatement->fetchAll();
+    }
+
+    /**
+     * Ejecuta una Insert o Update SQL.
+     *
+     * @param string $query Consulta SQL a ejecutar.
+     * @param array $params Lista de posibles parametros por los que filtrar.
+     */
+    public static function insertBuilder(string $query, array $params = []): void
+    {
+        try {
+            self::getConnection();
+            $PDOStatement = self::$db->prepare($query);
+            $PDOStatement->execute($params);
+        } catch (Exception $e) {
+            die("ocurrio un error al realizar el insert");
+        }
     }
 }

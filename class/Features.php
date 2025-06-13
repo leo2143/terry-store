@@ -14,7 +14,7 @@ class Features
         $allItems = [];
         $query = "INSERT INTO features (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems[0];
     }
@@ -24,7 +24,7 @@ class Features
         $allItems = [];
         $query = "INSERT INTO features (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems[0];
     }
@@ -34,7 +34,7 @@ class Features
         $query = "SELECT * FROM features WHERE id = :id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
     }
 
@@ -44,7 +44,7 @@ class Features
         $allItems = [];
         $query = "SELECT * FROM features";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
     }

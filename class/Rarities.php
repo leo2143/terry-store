@@ -8,25 +8,21 @@ class Rarities
 
 
 
-    public static function create($name): Rarities
+    public static function create($name): void
     {
+        $params = ['name' => $name];
 
-        $allItems = [];
         $query = "INSERT INTO rarities (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query,$params);
     }
 
-    public static function update(): Rarities
+    public static function update($id,$name): void
     {
-        $allItems = [];
+        $params = ['id' => $id,'name' => $name];
         $query = "INSERT INTO rarities (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query,$params);
     }
 
     public static function getById($id): Rarities
@@ -34,7 +30,7 @@ class Rarities
         $query = "SELECT * FROM rarities WHERE id = :id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
     }
 
@@ -44,10 +40,11 @@ class Rarities
         $allItems = [];
         $query = "SELECT * FROM rarities";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
     }
+    
     /**
      * Get the value of id
      */

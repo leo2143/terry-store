@@ -44,5 +44,5 @@ $equipments = Equipment::getAll();
         </tbody>
     </table>
 
-    <a href="create.php" class="btn btn-primary mt-3">Cargar nuevo equipamiento</a>
+    <a href="index.php?page=cu_equipment" class="btn btn-primary mt-3">Cargar nuevo equipamiento</a>
 </div>

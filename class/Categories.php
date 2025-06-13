@@ -8,25 +8,21 @@ class Categories
 
 
 
-    public static function create($name): Categories
+    public static function create($name): void
     {
 
-        $allItems = [];
+        $params = ['name' => $name];
         $query = "INSERT INTO categories (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query, $params);
     }
 
-    public static function update(): Categories
+    public static function update($id, $name): void
     {
-        $allItems = [];
+        $params = ['id' => $id, 'name' => $name];
         $query = "INSERT INTO categories (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query, $params);
     }
 
     public static function getById($id): Categories
@@ -34,7 +30,7 @@ class Categories
         $query = "SELECT * FROM categories WHERE id = :id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
     }
 
@@ -44,7 +40,7 @@ class Categories
         $allItems = [];
         $query = "SELECT * FROM categories";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
     }

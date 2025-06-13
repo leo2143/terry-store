@@ -23,7 +23,7 @@ class View
         $params = ['name' => $viewName];
 
 
-        $viewInfo = (new Connection())->consultBuilder($query, self::class, $params)[0] ?? null;
+        $viewInfo = (new Connection())->selectBuilder($query, self::class, $params)[0] ?? null;
 
         //SI SE ECUENTRA UNA VISTA QUE COORDINE CON LA SOLICITADA
         if ($viewInfo != null) {

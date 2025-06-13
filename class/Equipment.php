@@ -14,6 +14,54 @@ class Equipment
     private  $dateAdded;
     private $image;
 
+    public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
+    {
+        $query = "INSERT INTO equipments (
+        `name`, `type`, `category_id`, `rarity_id`, `material`, `ability`, `description`, `price`, `date_added`, `image`
+    ) VALUES (
+       :name, :type, :category_id, :rarity_id, :material, :ability, :description, :price, :date_added, :image
+    )";
+
+        $params = [
+            'name' => $name,
+            'type' => $type,
+            'category_id' => $categoryId,
+            'rarity_id' => $rarityId,
+            'material' => $material,
+            'ability' => $ability,
+            'description' => $description,
+            'price' => $price,
+            'date_added' => $dateAdded,
+            'image' => $image,
+        ];
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+    public static function update(int $id, string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
+    {
+        $query = "INSERT INTO equipments (
+        `id`,`name`, `type`, `category_id`, `rarity_id`, `material`, `ability`, `description`, `price`, `date_added`, `image`
+    ) VALUES (
+        :id, :name, :type, :category_id, :rarity_id, :material, :ability, :description, :price, :date_added, :image
+    )";
+
+        $params = [
+            'id' => $id,
+            'name' => $name,
+            'type' => $type,
+            'category_id' => $categoryId,
+            'rarity_id' => $rarityId,
+            'material' => $material,
+            'ability' => $ability,
+            'description' => $description,
+            'price' => $price,
+            'date_added' => $dateAdded,
+            'image' => $image,
+        ];
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+
 
 
     /**
@@ -25,7 +73,7 @@ class Equipment
         $allItems = [];
         $query = "SELECT * FROM equipments";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
     }
@@ -41,7 +89,7 @@ class Equipment
         $query = "SELECT * FROM equipments WHERE id = :id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0] ?? null;
     }
 
@@ -76,7 +124,7 @@ class Equipment
         $query = "SELECT * FROM equipments WHERE type = :type";
         $params = ['type' => $type];
 
-        $resultado = (new Connection())->consultBuilder($query, self::class, $params);
+        $resultado = (new Connection())->selectBuilder($query, self::class, $params);
         return $resultado ?? null;
     }
 
