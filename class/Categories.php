@@ -20,7 +20,7 @@ class Categories
     public static function update($id, $name): void
     {
         $params = ['id' => $id, 'name' => $name];
-        $query = "INSERT INTO categories (`name`) VALUES (:name)";
+        $query = "UPDATE categories SET `name` = :name WHERE id = :id";
 
         (new Connection())->insertBuilder($query, $params);
     }
@@ -44,6 +44,15 @@ class Categories
 
         return $allItems;
     }
+    public static function delete($id)
+    {
+        $params = ["id" => $id];
+
+        $query = "DELETE FROM categories WHERE id = :id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+
     /**
      * Get the value of id
      */

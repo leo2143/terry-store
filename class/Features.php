@@ -11,22 +11,20 @@ class Features
     public static function create($name): Features
     {
 
-        $allItems = [];
+        $params = ["name" => $name];
         $query = "INSERT INTO features (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->selectBuilder($query, self::class);
+        $allItems = (new Connection())->selectBuilder($query, self::class, $params);
 
         return $allItems[0];
     }
 
-    public static function update(): Features
+    public static function update($id, $name): void
     {
-        $allItems = [];
-        $query = "INSERT INTO features (`name`) VALUES (:name)";
+        $params = ['id' => $id, 'name' => $name];
+        $query = "UPDATE features SET `name` = :name WHERE id = :id";
 
-        $allItems = (new Connection())->selectBuilder($query, self::class);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query, $params);
     }
 
     public static function getById($id): Features
@@ -47,6 +45,15 @@ class Features
         $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
+    }
+
+    public static function delete($id)
+    {
+
+        $params = ["id" => $id];
+        $query = "DELETE FROM features WHERE id = :id";
+
+        (new Connection())->insertBuilder($query,  $params);
     }
     /**
      * Get the value of id

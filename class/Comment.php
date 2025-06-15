@@ -5,6 +5,9 @@ class Comment
 
     private $username;
 
+    private $equipment_id;
+
+
     private $content;
 
     private $rating;
@@ -32,12 +35,20 @@ class Comment
     }
 
 
-    public static function update($id, $name)
+    public static function update($id, $equipmentId, $username, $profileImage, $content, $rating, $createAt)
     {
-        $query = "INSERT INTO comments (`name`) VALUES (:name)";
-        $params = ['id' => $id, 'name' => $name];
+        $params = [
+            'id' => $id,
+            'equipment_id' => $equipmentId,
+            'username' => $username,
+            'profile_image' => $profileImage,
+            'content' => $content,
+            'rating' => $rating,
+            'created_at' => $createAt
+        ];
+        $query = "UPDATE comments SET `equipment_id` = :equipment_id, `username` = :username, `profile_image` = :profile_image, `content` = :content, `rating` = :rating, `created_at` = :created_at WHERE id = :id";
 
-        (new Connection())->selectBuilder($query, self::class, $params);
+        (new Connection())->insertBuilder($query,  $params);
     }
 
     public static function getById($id): Comment
@@ -58,6 +69,15 @@ class Comment
         $allItems = (new Connection())->selectBuilder($query, self::class);
 
         return $allItems;
+    }
+
+    public static function delete($id)
+    {
+        $params = ["id" => $id];
+
+        $query = "DELETE FROM comments WHERE id = :id";
+
+        (new Connection())->insertBuilder($query, $params);
     }
 
 
@@ -177,6 +197,24 @@ class Comment
     public function setProfileImage($profileImage)
     {
         $this->profile_image = $profileImage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of equipmentId
+     */
+    public function getEquipmentId()
+    {
+        return $this->equipment_id;
+    }
+
+    /**
+     * Set the value of equipmentId
+     */
+    public function setEquipmentId($equipmentId): self
+    {
+        $this->equipment_id = $equipmentId;
 
         return $this;
     }

@@ -1,19 +1,28 @@
 <?PHP
 require_once '../../class/Comment.php';
 require_once '../../class/Connection.php';
+require_once '../../class/Images.php';
 
 $postData = $_POST;
 $fileData = $_FILES;
 
-print_r($postData);
-print_r($fileData);
 
-//validar si viene un campo id, si viene un campo id se ejecuta el update
 
 
 try {
-    Comment::create(1, $postData['username'], "revall", $postData['content'], $postData['rating'], date("Y/m/d"));
+    if (!empty($fileData["image"]["tmp_name"])) {
+        $image = Image::uploadImage("../../images/icons", $_FILES['image']);
+        if (isset($postData['id']) && is_numeric($postData['id'])) Image::deleteImage("../../images/icons/" . $_POST['image']);
+    } else {
+        $image = $postData['image'];
+    }
+
+    if (isset($postData['id']) && is_numeric($postData['id'])) {
+        Comment::update($postData['id'], $postData['equipment_id'], $postData['username'], $image, $postData['content'], $postData['rating'], date("Y/m/d"));
+    } else {
+        Comment::create(1, $postData['username'], $image, $postData['content'], $postData['rating'], date("Y/m/d"));
+    }
 } catch (Exception $e) {
-    die("no se pudo cargar");
+    die("no se pudo cargar el comentario");
 }
-header('Location: ../index.php?sec=admin_comments');
+header('Location: ../index.php?page=admin_comments');

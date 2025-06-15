@@ -1,6 +1,8 @@
 <?PHP
 require_once '../../class/Equipment.php';
 require_once '../../class/Connection.php';
+require_once '../../class/Images.php';
+
 
 $postData = $_POST;
 $fileData = $_FILES;
@@ -14,24 +16,47 @@ $ability = $_POST['ability'] ?? '';
 $description = $_POST['description'];
 $price = (float) $_POST['price'];
 $dateAdded = date('Y-m-d');
-
-//validar si viene un campo id, si viene un campo id se ejecuta el update
+print_r($_POST);
 
 
 try {
-    Equipment::create(
-        $name,
-        $type,
-        $categoryId,
-        $rarityId,
-        $material,
-        $ability,
-        $description,
-        $price,
-        $dateAdded,
-        "x"
-    );
+    if (!empty($fileData["image"]["tmp_name"])) {
+
+        $image = Image::uploadImage("../../images/items", $_FILES['image']);
+        if (isset($postData['id']) && is_numeric($postData['id'])) Image::deleteImage("../../images/items/" . $_POST['image']);
+    } else {
+        $image = $postData['image'];
+    }
+
+    if (isset($postData['id']) && is_numeric($postData['id'])) {
+        Equipment::update(
+            $postData['id'],
+            $name,
+            $type,
+            $categoryId,
+            $rarityId,
+            $material,
+            $ability,
+            $description,
+            $price,
+            $dateAdded,
+            $image
+        );
+    } else {
+        Equipment::create(
+            $name,
+            $type,
+            $categoryId,
+            $rarityId,
+            $material,
+            $ability,
+            $description,
+            $price,
+            $dateAdded,
+            $image
+        );
+    }
 } catch (Exception $e) {
-    die("no se pudo cargar");
+    die("no se pudo cargar el equipamiento");
 }
 header('Location: ../index.php?page=admin_equipments');

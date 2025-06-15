@@ -14,15 +14,15 @@ class Rarities
 
         $query = "INSERT INTO rarities (`name`) VALUES (:name)";
 
-        (new Connection())->insertBuilder($query,$params);
+        (new Connection())->insertBuilder($query, $params);
     }
 
-    public static function update($id,$name): void
+    public static function update($id, $name): void
     {
-        $params = ['id' => $id,'name' => $name];
-        $query = "INSERT INTO rarities (`name`) VALUES (:name)";
+        $params = ['id' => $id, 'name' => $name];
+        $query = "UPDATE rarities SET `name` = :name WHERE id = :id";
 
-        (new Connection())->insertBuilder($query,$params);
+        (new Connection())->insertBuilder($query, $params);
     }
 
     public static function getById($id): Rarities
@@ -44,7 +44,16 @@ class Rarities
 
         return $allItems;
     }
-    
+    public static function delete($id)
+    {
+        $params = ["id" => $id];
+
+        $query = "DELETE FROM rarities WHERE id = :id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+
+
     /**
      * Get the value of id
      */

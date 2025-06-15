@@ -39,6 +39,7 @@ if ($equipmentSelected) {
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
+    <script src="../scripts/main.js" defer></script>
     <link rel="stylesheet" href="../styles/style.css">
     <title><?= $vista->getTitle() ?></title>
 </head>
@@ -71,6 +72,9 @@ if ($equipmentSelected) {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=admin_features">Administrar features</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.php">Pagina principal</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -87,6 +91,25 @@ if ($equipmentSelected) {
 
         ?>
 
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 rounded-4 shadow-lg bg-dark text-light">
+                    <div class="modal-header border-0">
+                        <h3 class="modal-title fs-4" id="exampleModalLabel">¿Estás seguro que deseas eliminar este item?</h3>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column align-items-center gap-4 py-4">
+                        <form action="actions/admin_delete.php" method="post" class="w-100 d-flex flex-column align-items-center gap-3">
+                            <input type="hidden" name="id" id="item-id-to-delete">
+                            <input type="hidden" name="entitie" id="item-entitie-to-delete">
+
+                            <button type="submit" class="btn btn-custom w-75 py-2 fw-semibold">Eliminar</button>
+                            <button type="button" class="btn btn-outline-light w-75 py-2 fw-semibold" data-bs-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="bg-dark text-light py-4 mt-5 border-seconday-sheika ">
         <div class="container">

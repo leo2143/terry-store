@@ -4,29 +4,45 @@ $features = Features::getAll();
 
 ?>
 
-<div class="container row mb-5 mt-5 d-flex align-items-center">
-    <table class="table">
+<div class="container d-flex flex-column justify-content-center">
+    <div class="table-responsive mt-5">
 
-        <thead>
-            <tr>
-                <th scope="col">name</th>
-                <th scope="col">actions</th>
+        <table class="table">
 
-            </tr>
-        </thead>
-        <tbody>
-
-            <?PHP foreach ($features as $feature) { ?>
-
+            <thead>
                 <tr>
-                    <td><?= $feature->getName() ?></td>
-                    <td><a href="" role="button" class="d-block btn btn-sm btn-warning">Editar</a>
-                        <a href="" role="button" class="d-block btn btn-sm btn-danger">Eliminar</a>
-                    </td>
-                </tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Acciones</th>
 
-        </tbody>
-    <?PHP } ?>
-    </table>
-    <a href="index.php?page=cu_feature" class="button btn-primary">cargar nuevo equipamiento</a>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?PHP foreach ($features as $feature) { ?>
+
+                    <tr>
+                        <td><?= $feature->getName() ?></td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-end gap-3 w-50">
+
+                                <a href="index.php?page=cu_feature&id=<?= $feature->getId() ?>" role="button" class="btn btn-sm btn-edit-primary w-50">Editar</a>
+
+                                <a href="#"
+                                    class=" btn btn-danger btn-sm btn-eliminar w-50"
+                                    data-id="<?= $feature->getId(); ?>"
+                                    data-entitie="Features"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Eliminar
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        <?PHP } ?>
+        </table>
+    </div>
+    <a href="index.php?page=cu_feature" class="btn btn-custom w-100 mt-5  p-3">cargar nueva característica</a>
 </div>

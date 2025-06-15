@@ -68,7 +68,7 @@ class Connection
             $PDOStatement = self::$db->prepare($query);
             $PDOStatement->execute($params);
         } catch (Exception $e) {
-            die("ocurrio un error al realizar el insert");
+            die($e);
         }
     }
 }

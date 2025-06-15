@@ -1,19 +1,17 @@
-<?PHP
-require_once '../../class/Comment.php';
+<?php
+require_once '../../class/Features.php';
 require_once '../../class/Connection.php';
 
 $postData = $_POST;
-$fileData = $_FILES;
-
-print_r($postData);
-print_r($fileData);
-
-//validar si viene un campo id, si viene un campo id se ejecuta el update
-
 
 try {
-    Comment::create(1, $postData['username'], "revall", $postData['content'], $postData['rating'], date("Y/m/d"));
+    if (isset($postData['id']) && is_numeric($postData['id'])) {
+        Features::update($postData['id'], $postData['name']);
+    } else {
+        Features::create($postData['name']);
+    }
 } catch (Exception $e) {
-    die("no se pudo cargar");
+    die("No se pudo cargar la característica: " . $e->getMessage());
 }
-header('Location: ../index.php?sec=admin_comments');
+
+header('Location: ../index.php?page=admin_features');

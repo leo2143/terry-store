@@ -5,13 +5,13 @@ class Equipment
     private  $id;
     private  $name;
     private  $type;
-    private  $category;
-    private  $rarity;
+    private  $category_id;
+    private  $rarity_id;
     private  $material;
     private  $ability;
     private  $description;
     private  $price;
-    private  $dateAdded;
+    private  $date_added;
     private $image;
 
     public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
@@ -39,11 +39,9 @@ class Equipment
     }
     public static function update(int $id, string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
     {
-        $query = "INSERT INTO equipments (
-        `id`,`name`, `type`, `category_id`, `rarity_id`, `material`, `ability`, `description`, `price`, `date_added`, `image`
-    ) VALUES (
-        :id, :name, :type, :category_id, :rarity_id, :material, :ability, :description, :price, :date_added, :image
-    )";
+        $query = "UPDATE equipments SET 
+        `id` = :id,`name` = :name, `type` = :type, `category_id` = :category_id, `rarity_id` = :rarity_id, `material` = :material, `ability` = :ability, `description` = :description, `price` = :price, `date_added`=:date_added, `image` = :image WHERE id = :id";
+
 
         $params = [
             'id' => $id,
@@ -62,7 +60,14 @@ class Equipment
         (new Connection())->insertBuilder($query, $params);
     }
 
+    public static function delete($id)
+    {
+        $params = ["id" => $id];
 
+        $query = "DELETE FROM equipments WHERE id = :id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
 
     /**
      * Retorna el catálogo de equipamientos completo
@@ -128,6 +133,8 @@ class Equipment
         return $resultado ?? null;
     }
 
+
+
     /**
      * Reduce la descripción a un máximo de caracteres
      *
@@ -151,6 +158,7 @@ class Equipment
 
         return $trimmedText;
     }
+
 
     /**
      * Get the value of id
@@ -217,7 +225,7 @@ class Equipment
      */
     public function getCategory()
     {
-        return $this->category;
+        return $this->category_id;
     }
 
     /**
@@ -227,7 +235,7 @@ class Equipment
      */
     public function setCategory($category)
     {
-        $this->category = $category;
+        $this->category_id = $category;
 
         return $this;
     }
@@ -237,7 +245,7 @@ class Equipment
      */
     public function getRarity()
     {
-        return $this->rarity;
+        return $this->rarity_id;
     }
 
     /**
@@ -247,7 +255,7 @@ class Equipment
      */
     public function setRarity($rarity)
     {
-        $this->rarity = $rarity;
+        $this->rarity_id = $rarity;
 
         return $this;
     }
@@ -337,7 +345,7 @@ class Equipment
      */
     public function getDateAdded()
     {
-        return $this->dateAdded;
+        return $this->date_added;
     }
 
     /**
@@ -347,7 +355,7 @@ class Equipment
      */
     public function setDateAdded($dateAdded)
     {
-        $this->dateAdded = $dateAdded;
+        $this->date_added = $dateAdded;
 
         return $this;
     }
