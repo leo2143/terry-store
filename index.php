@@ -1,8 +1,6 @@
 <?PHP
-require_once 'class/Equipment.php';
-require_once 'class/View.php';
-require_once 'class/Connection.php';
-require_once 'class/Comment.php';
+require_once 'functions/Autoload.php';
+
 
 
 

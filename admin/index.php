@@ -1,11 +1,6 @@
 <?PHP
-require_once '../class/Equipment.php';
-require_once '../class/Categories.php';
-require_once '../class/Rarities.php';
-require_once '../class/features.php';
-require_once '../class/Comment.php';
-require_once '../class/View.php';
-require_once '../class/Connection.php';
+require_once '../functions/Autoload.php';
+
 
 
 $section = isset($_GET["page"]) ? $_GET["page"] : "dashboard";

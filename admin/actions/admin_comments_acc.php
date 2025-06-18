@@ -1,7 +1,6 @@
 <?PHP
-require_once '../../class/Comment.php';
-require_once '../../class/Connection.php';
-require_once '../../class/Images.php';
+require_once '../../functions/Autoload.php';
+
 
 $postData = $_POST;
 $fileData = $_FILES;

@@ -40,19 +40,27 @@ class Connection
      * @param string $query Consulta SQL a ejecutar.
      * @param string $class Nombre de la clase a la que se mapearán los resultados.
      * @param array $params Lista de posibles parametros por los que filtrar.
-     * @return array Lista de objetos instanciados de la clase especificada.
+     * @return mixed Lista de objetos instanciados de la clase especificada.
      */
-    public static function selectBuilder(string $query, string $class, array $params = []): array
+    public static function selectBuilder(string $query, string $class, array $params = [], bool $complexClass = false): mixed
     {
         try {
             self::getConnection();
             $PDOStatement = self::$db->prepare($query);
-            $PDOStatement->setFetchMode(PDO::FETCH_CLASS, $class);
-            $PDOStatement->execute($params);
+            if ($complexClass) {
+                $PDOStatement->setFetchMode(PDO::FETCH_ASSOC);
+                $PDOStatement->execute($params);
+
+                return $PDOStatement;
+            } else {
+                $PDOStatement->setFetchMode(PDO::FETCH_CLASS, $class);
+                $PDOStatement->execute($params);
+
+                return $PDOStatement->fetchAll();
+            }
         } catch (Exception $e) {
             die("ocurrio un error en la consulta sql");
         }
-        return $PDOStatement->fetchAll();
     }
 
     /**

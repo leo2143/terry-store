@@ -5,8 +5,11 @@ class Equipment
     private  $id;
     private  $name;
     private  $type;
-    private  $category_id;
-    private  $rarity_id;
+    private  Categories $category;
+    private  Rarities $rarity;
+
+    private  array $features;
+
     private  $material;
     private  $ability;
     private  $description;
@@ -76,9 +79,12 @@ class Equipment
     public static function getAll(): array
     {
         $allItems = [];
-        $query = "SELECT * FROM equipments";
+        $query = "SELECT equipments.*, GROUP_CONCAT(equipment_features.feature_id) AS features_ids FROM equipments LEFT JOIN equipment_features ON equipments.id = equipment_features.equipment_id GROUP BY equipments.id;";
 
-        $allItems = (new Connection())->selectBuilder($query, self::class);
+        $tableResult = (new Connection())->selectBuilder($query, self::class, [], true);
+        while ($result = $tableResult->fetch()) {
+            $allItems[] = self::buildEquipmentClasses($result);
+        }
 
         return $allItems;
     }
@@ -91,11 +97,16 @@ class Equipment
     public static function getById(int $id): ?Equipment
     {
 
-        $query = "SELECT * FROM equipments WHERE id = :id";
+        $query = "SELECT equipments.*, GROUP_CONCAT(equipment_features.feature_id) AS features_ids FROM equipments LEFT JOIN equipment_features ON equipments.id = equipment_features.equipment_id WHERE id = :id GROUP BY equipments.id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
-        return $catalogo[0] ?? null;
+        $result = (new Connection())->selectBuilder($query, self::class, $params, true);
+
+        $catalogo = self::buildEquipmentClasses($result->fetch());
+
+
+
+        return $catalogo ?? null;
     }
 
     /**
@@ -158,6 +169,30 @@ class Equipment
 
         return $trimmedText;
     }
+    private static $createValues = ['id', 'name', 'type', 'material', 'ability', 'description', 'price', 'date_added', 'image'];
+    private static function buildEquipmentClasses($equipmentData): Equipment
+    {
+
+        $equipment = new self();
+
+        foreach (self::$createValues as $value) {
+            $equipment->{$value} = $equipmentData[$value];
+        }
+
+        $equipment->category = Categories::getById($equipmentData["category_id"]);
+        $equipment->rarity = Rarities::getById($equipmentData["rarity_id"]);
+        $featuresIds = !empty($equipmentData['features_ids']) ? explode(",", $equipmentData['features_ids']) : [];
+
+        $featuresEquipments = [];
+        foreach ($featuresIds as $featureId) {
+            $featuresEquipments[] = Features::getById($featureId);
+        }
+        $equipment->features = $featuresEquipments;
+
+
+
+        return $equipment;
+    }
 
 
     /**
@@ -216,46 +251,6 @@ class Equipment
     public function setType($type)
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of category
-     */
-    public function getCategory()
-    {
-        return $this->category_id;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @return  self
-     */
-    public function setCategory($category)
-    {
-        $this->category_id = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of rarity
-     */
-    public function getRarity()
-    {
-        return $this->rarity_id;
-    }
-
-    /**
-     * Set the value of rarity
-     *
-     * @return  self
-     */
-    public function setRarity($rarity)
-    {
-        $this->rarity_id = $rarity;
 
         return $this;
     }
@@ -376,6 +371,62 @@ class Equipment
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of features
+     */
+    public function getFeatures(): array
+    {
+        return $this->features;
+    }
+
+    /**
+     * Set the value of features
+     */
+    public function setFeatures(array $features): self
+    {
+        $this->features = $features;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rarity
+     */
+    public function getRarity(): Rarities
+    {
+        return $this->rarity;
+    }
+
+    /**
+     * Set the value of rarity
+     */
+    public function setRarity(Rarities $rarity): self
+    {
+        $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */
+    public function getCategory(): Categories
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     */
+    public function setCategory(Categories $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

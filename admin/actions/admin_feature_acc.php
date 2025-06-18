@@ -1,6 +1,6 @@
 <?php
-require_once '../../class/Features.php';
-require_once '../../class/Connection.php';
+require_once '../../functions/Autoload.php';
+
 
 $postData = $_POST;
 

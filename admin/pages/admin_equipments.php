@@ -28,8 +28,8 @@ $toDelete = null;
                         </td>
                         <td><?= $equipment->getName(); ?></td>
                         <td><?= $equipment->getType(); ?></td>
-                        <td><?= $equipment->getCategory(); ?></td>
-                        <td><?= $equipment->getRarity(); ?></td>
+                        <td><?= $equipment->getCategory()->getName();?></td>
+                        <td><?= $equipment->getRarity()->getName(); ?></td>
                         <td><?= $equipment->getMaterial(); ?></td>
                         <td><?= $equipment->getAbility(); ?></td>
                         <td><?= $equipment->reduceDescription(); ?></td>

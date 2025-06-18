@@ -42,7 +42,7 @@ $item = Equipment::getByid($productId);
         <h4>Rareza</h4>
       </div>
       <div class="text-center justify-content-center w-50">
-        <p class="text-center mt-2 fs-4"><?= $item->getRarity(); ?>
+        <p class="text-center mt-2 fs-4"><?= $item->getRarity()->getName(); ?>
         </p>
       </div>
     </div>
@@ -83,8 +83,15 @@ $item = Equipment::getByid($productId);
         <h4>Categoria</h4>
       </div>
       <div class="text-center justify-content-center w-50">
-        <p class="text-center mt-2 fs-4"><?= $item->getCategory(); ?></p>
+        <p class="text-center mt-2 fs-4"><?= $item->getCategory()->getName(); ?></p>
       </div>
+    </div>
+    <div>
+      <h4>Features</h4>
+      <?php foreach ($item->getFeatures() as $feature) { ?>
+        <p><?= $feature->getName() ?></p>
+      <?php } ?>
+
     </div>
   </div>
 </section>

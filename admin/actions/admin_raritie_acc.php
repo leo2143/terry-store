@@ -1,6 +1,5 @@
 <?php
-require_once '../../class/Rarities.php';
-require_once '../../class/Connection.php';
+require_once '../../functions/Autoload.php';
 
 $postData = $_POST;
 
