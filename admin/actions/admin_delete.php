@@ -11,8 +11,11 @@ try {
     $entity = $postData["entitie"] ?? null;
     switch ($entity) {
         case 'Equipment':
+            $equipment = Equipment::getById($id);
             Equipment::delete($id);
-            $redirectTo = "equipment";
+            Images::deleteImage("../../images/items/" . $equipment->getImage());
+
+            $redirectTo = "equipments";
             break;
         case 'Categories':
             Categories::delete($id);

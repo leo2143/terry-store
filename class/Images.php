@@ -1,5 +1,5 @@
 <?PHP
-class Image
+class Images
 {
 
     public static function uploadImage(string $directory, array $folderData): mixed

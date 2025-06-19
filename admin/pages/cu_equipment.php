@@ -43,7 +43,7 @@ if ($equipmentId != 0) {
                                 <option value="">– Selecciona –</option>
                                 <?php foreach ($categories as $categorie): ?>
                                     <option value="<?= $categorie->getId(); ?>"
-                                        <?= $equipment && $equipment->getCategory() == $categorie->getId() ? 'selected' : ''; ?>>
+                                        <?= $categorie->getId() == $equipment->getCategory()->getId()  ? "selected" : ""; ?>>
                                         <?= $categorie->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -56,33 +56,12 @@ if ($equipmentId != 0) {
                                 <option value="">– Selecciona –</option>
                                 <?php foreach ($rarities as $raritie): ?>
                                     <option value="<?= $raritie->getId(); ?>"
-                                        <?= $equipment && $equipment->getRarity() == $raritie->getId() ? 'selected' : ''; ?>>
+                                        <?=  $raritie->getId() ==  $equipment->getRarity()->getId() ? 'selected' : ''; ?>>
                                         <?= $raritie->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="features" class="form-label text-light">característica</label>
-                            <select multiple class="form-select form-select-custom" id="features" name="features[]" required>
-                                <?php
-                                $selectedFeatureIds = [];
-
-                                if ($equipment) {
-                                    foreach ($features as $feature) {
-                                        $selectedFeatureIds[] = $feature->getId();
-                                    }
-                                }
-
-                                foreach ($features as $feature): ?>
-                                    <option value="<?= $feature->getId(); ?>"
-                                        <?= in_array($feature->getId(), $selectedFeatureIds) ? 'selected' : ''; ?>>
-                                        <?= $feature->getName(); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
 
                         <div class="col-md-6 mb-3">
                             <label for="material" class="form-label text-light">Material</label>
@@ -95,13 +74,23 @@ if ($equipmentId != 0) {
                             <input type="text" class="form-control form-control-custom" id="ability" name="ability"
                                 value="<?= $equipment ? $equipment->getAbility() : ''; ?>">
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label for="price" class="form-label text-light">Precio</label>
                             <input type="number" step="0.01" class="form-control form-control-custom" id="price" name="price"
                                 placeholder="Ej: 1500.00"
                                 value="<?= $equipment ? $equipment->getPrice() : ''; ?>" required>
                         </div>
-
+                        <div class="col-md-12 mb-3 ">
+                            <label class="form-label text-light ">Características</label>
+                            <div class="checks-container p-4">
+                                <?php foreach ($features as $feature): ?>
+                                    <div class="col-md-5 mb-3 form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="features[]" id="feature_<?= $feature->getId(); ?>" value="<?= $feature->getId(); ?>" <?= (isset($equipment) && in_array($feature->getId(), $equipment->getFeaturesIds())) ? "checked" : ""; ?>>
+                                        <label class="form-check-label text-light mb-2" for="feature_<?= $feature->getId(); ?>"><?= $feature->getName(); ?></label>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
 
                         <div class="col-12 mb-3">
                             <label for="description" class="form-label text-light">Descripción</label>

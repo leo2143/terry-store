@@ -8,7 +8,7 @@ class Equipment
     private  Categories $category;
     private  Rarities $rarity;
 
-    private  array $features;
+    private array $features;
 
     private  $material;
     private  $ability;
@@ -17,7 +17,7 @@ class Equipment
     private  $date_added;
     private $image;
 
-    public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
+    public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): int
     {
         $query = "INSERT INTO equipments (
         `name`, `type`, `category_id`, `rarity_id`, `material`, `ability`, `description`, `price`, `date_added`, `image`
@@ -38,7 +38,7 @@ class Equipment
             'image' => $image,
         ];
 
-        (new Connection())->insertBuilder($query, $params);
+        return (new Connection())->insertBuilder($query, $params, true);
     }
     public static function update(int $id, string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
     {
@@ -144,6 +144,28 @@ class Equipment
         return $resultado ?? null;
     }
 
+
+    public static function insertEquipmentFeature($equipmentId, array $featuresIds)
+    {
+
+        foreach ($featuresIds as $features) {
+            $params = ["equipment_id" => $equipmentId, "feature_id" => $features];
+
+            $query = "INSERT INTO equipment_features(`equipment_id`,`feature_id`) VALUES(:equipment_id , :feature_id)";
+
+            (new Connection())->insertBuilder($query, $params);
+        }
+    }
+
+    public function deleteEquipmentFeature()
+    {
+
+        $params = ["equipment_id" => $this->id];
+
+        $query = "DELETE FROM equipment_features WHERE `equipment_id` = :equipment_id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
 
 
     /**
@@ -376,13 +398,23 @@ class Equipment
     }
 
 
-
     /**
      * Get the value of features
      */
     public function getFeatures(): array
     {
         return $this->features;
+    }
+    /**
+     * Get the value of features
+     */
+    public function getFeaturesIds(): array
+    {
+        $result = [];
+        foreach ($this->features as $feature) {
+            $result[] = $feature->getId();
+        }
+        return $result;
     }
 
     /**

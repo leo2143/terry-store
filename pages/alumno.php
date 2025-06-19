@@ -1,6 +1,6 @@
 <section class="contact-section home-container text-light py-5">
     <div class="container">
-        <h2 class="text-center mb-4 display-5">Contacto</h2>
+        <h1 class="text-center mb-4 display-5">Contacto</h1>
         <p class="text-center mb-5 fs-5">¿Tienes dudas, sugerencias ¡Estoy para ayudarte!</p>
 
         <div class="row justify-content-center align-items-center text-center g-5">

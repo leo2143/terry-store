@@ -3,6 +3,7 @@
 $productId = $_GET["id"] ?? 0;
 
 $item = Equipment::getByid($productId);
+$comments = Comment::getByEquipmentId($productId);
 
 
 ?>
@@ -16,8 +17,8 @@ $item = Equipment::getByid($productId);
     </div>
     <div class="container d-flex flex-column justify-content-center align-items-center" id="info-container">
       <div class="container pt-2  pb-4" title="title product and price">
-        <h2><?= $item->getName() ?></h2>
-        <h3><img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2"> <?= $item->getPrice(); ?></h3>
+        <h1><?= $item->getName() ?></h1>
+        <h2><img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2"> <?= $item->getPrice(); ?></h2>
       </div>
 
       <div class="container d-flex flex-column gap-2  " id="botones">
@@ -86,14 +87,89 @@ $item = Equipment::getByid($productId);
         <p class="text-center mt-2 fs-4"><?= $item->getCategory()->getName(); ?></p>
       </div>
     </div>
-    <div>
-      <h4>Features</h4>
+  </div>
+  <div class="container">
+    <h3>Características</h3>
+    <div class="d-flex gap-4 flex-wrap mt-3">
       <?php foreach ($item->getFeatures() as $feature) { ?>
-        <p><?= $feature->getName() ?></p>
+        <div class="value-card p-2 ps-3 pe-3 rounded-pill">
+          <p class="m-0 custom-text"><?= $feature->getName() ?></p>
+        </div>
       <?php } ?>
+    </div>
+  </div>
+  <div class="comentarios">
+    <div class="text-center mb-4">
+      <h3 class=" text-sheika-style">Comentarios del Reino</h3>
+    </div>
+
+    <div class="glow-wrapper d-flex flex-column gap-4 align-items-center justify-content-center rounded-4 mt-5">
+      <?php foreach ($comments as $comment): ?>
+        <div class="opinions-container p-5 d-flex flex-column flex-lg-row align-items-lg-start align-items-center rounded-4 gap-3">
+
+          <div class="opinions-title d-flex align-items-center gap-5">
+
+            <img src="images/icons/<?= $comment->getProfileImage(); ?>" alt=<?= $comment->getProfileImage(); ?> class="rounded-circle" height="120">
+          </div>
+          <div class="opinions-text ps-lg-5 d-flex flex-column">
+            <h4><?= $comment->getUserName(); ?></h4>
+
+            <p>
+              <?= $comment->getContent(); ?>
+            </p>
+
+            <div class="opinions-stars-container d-flex gap-3">
+              <?php for ($i = 0; $i < $comment->getRating(); $i++): ?>
+                <div class="star"></div>
+              <?php endfor; ?>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
 
     </div>
   </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-12">
+      <div class=" bg-secondary-light-20 border-0 p-4 shadow-sm">
+        <h3 class=" mb-3">Deja tu comentario</h3>
+        <form action="admin/actions/admin_comments_acc.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" class="form-control form-control-custom" id="equipment_id" name="equipment_id" value="<?= $item->getId(); ?>" required>
+
+          <div class="mb-3">
+            <label for="username" class="form-label text-light">Nombre</label>
+            <input type="text" class="form-control form-control-custom" id="username" name="username" placeholder="Link, Zelda, tú mismo…" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="rating" class="form-label text-light">Puntuación</label>
+            <select class="form-select form-select-custom" id="rating" name="rating" required>
+              <option value="">– Selecciona –</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="1">⭐</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="content" class="form-label text-light">Tu reseña</label>
+            <textarea class="form-control form-control-custom" id="content" name="content" rows="4" placeholder="¡Escribe tu experiencia con Terry!" required></textarea>
+          </div>
+
+
+          <div class="mb-3 custom-file-upload">
+            <label for="image" class="btn btn-upload w-100 rounded-2">Subir imagen</label>
+            <input type="file" id="image" name="image" accept="image/*">
+          </div>
+
+          <button type="submit" class="btn btn-custom w-100">Enviar comentario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -3,7 +3,7 @@ $comments = Comment::getAll();
 ?>
 <section class="opinions-section container pb-5  pt-5">
   <div class="text-center mb-4">
-    <h2 class="display-5 text-sheika-style">Comentarios del Reino</h2>
+    <h1 class="display-5 text-sheika-style">Comentarios del Reino</h1>
     <p class="  fst-italic text-light">¡Deja tu marca en las runas de Terry!</p>
   </div>
 
@@ -16,7 +16,7 @@ $comments = Comment::getAll();
           <img src="images/icons/<?= $comment->getProfileImage(); ?>.png" alt=<?= $comment->getProfileImage(); ?>>
         </div>
         <div class="opinions-text ps-lg-5 d-flex flex-column">
-          <h3><?= $comment->getName(); ?></h3>
+          <h2><?= $comment->getName(); ?></h2>
 
           <p>
             <?= $comment->getDescription(); ?>
@@ -36,7 +36,7 @@ $comments = Comment::getAll();
   <div class="row justify-content-center mt-5 sheika-container">
     <div class="col-12">
       <div class=" bg-secondary-light-20 border-0 p-4 shadow-sm">
-        <h3 class=" mb-3">Deja tu comentario</h3>
+        <h2 class=" mb-3">Deja tu comentario</h2>
         <form action="index.php?page=formulario&action=add" method="post">
           <div class="mb-3">
             <label for="name" class="form-label text-light">Nombre</label>

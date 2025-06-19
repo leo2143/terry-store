@@ -15,19 +15,27 @@ $ability = $_POST['ability'] ?? '';
 $description = $_POST['description'];
 $price = (float) $_POST['price'];
 $dateAdded = date('Y-m-d');
-print_r($_POST);
+$features = $_POST["features"] ?? [];
+
 
 
 try {
-    if (!empty($fileData["image"]["tmp_name"])) {
 
-        $image = Image::uploadImage("../../images/items", $_FILES['image']);
-        if (isset($postData['id']) && is_numeric($postData['id'])) Image::deleteImage("../../images/items/" . $_POST['image']);
+    if (!empty($fileData["image"]["tmp_name"])) {
+        $image = Images::uploadImage("../../images/items", $_FILES['image']);
     } else {
         $image = $postData['image'];
     }
 
     if (isset($postData['id']) && is_numeric($postData['id'])) {
+        $equipment = Equipment::getById($postData['id']);
+
+        Images::deleteImage("../../images/items/" . $_POST['image']);
+        $equipment->deleteEquipmentFeature();
+        if (isset($features)) {
+            Equipment::insertEquipmentFeature($equipment->getId(), $features);
+        }
+
         Equipment::update(
             $postData['id'],
             $name,
@@ -42,7 +50,7 @@ try {
             $image
         );
     } else {
-        Equipment::create(
+        $equipmentId =  Equipment::create(
             $name,
             $type,
             $categoryId,
@@ -54,6 +62,10 @@ try {
             $dateAdded,
             $image
         );
+
+        if (isset($features)) {
+            Equipment::insertEquipmentFeature($equipmentId, $features);
+        }
     }
 } catch (Exception $e) {
     die("no se pudo cargar el equipamiento");

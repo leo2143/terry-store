@@ -3,14 +3,14 @@
   <div class="container text-light">
 
     <div id="hero" class="text-center mb-5">
-      <h2 class="display-5 fw-bold text-sheika-style">Sobre la Tienda de Terry</h2>
+      <h1 class="display-5 fw-bold text-sheika-style">Sobre la Tienda de Terry</h1>
       <div class="divider my-3 mx-auto"></div>
       <p class="lead">¿Quién dijo que un <em>vendedor ambulante</em> no puede <strong>innovar?</strong> … ¡Bienvenido al primer <strong>e-commerce místico</strong> del Reino de Hyrule!</p>
     </div>
 
     <div id="historia" class="row align-items-center mb-5">
       <div class="col-lg-6 order-2 order-lg-1">
-        <h3 class="h4 mb-3 text-sheika-style"> Historia de Terry</h3>
+        <h2 class="h4 mb-3 text-sheika-style"> Historia de Terry</h2>
         <p class="">
           Todo comenzó en un <em>rincón olvidado</em> del Reino, cuando Terry decidió bajar de su globo y abrir su <strong> primera tienda terrestre.</strong>
           Con una mochila llena de <em>ítems misteriosos</em> y una sonrisa un poco sospechosa, Terry fue ganándose el <strong>corazón </strong> (y las <strong>rupias)</strong>
@@ -25,25 +25,25 @@
     <div id="filosofia" class="row g-4">
       <div class="col-sm-6 col-lg-3">
         <div class="value-card p-4 h-100 text-center">
-          <h5>Precios justos</h5>
+          <h3 class="fs-4">Precios justos</h3>
           <p>Para héroes valientes</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="value-card p-4 h-100 text-center">
-          <h5>Reparaciones</h5>
+          <h3 class="fs-4">Reparaciones</h3>
           <p>Escudos con estilo</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="value-card p-4 h-100 text-center">
-          <h5>Atención mágica</h5>
+          <h3 class="fs-4">Atención mágica</h3>
           <p>Personalizada y cordial</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="value-card p-4 h-100 text-center">
-          <h5>Comercio responsable</h5>
+          <h3 class="fs-4">Comercio responsable</h3>
           <p>Con monstruos locales</p>
         </div>
       </div>

@@ -7,7 +7,6 @@ class Comment
 
     private $equipment_id;
 
-
     private $content;
 
     private $rating;
@@ -58,6 +57,14 @@ class Comment
 
         $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
+    }
+
+    public static function getByEquipmentId($equipmentId): array
+    {
+        $query = "SELECT * FROM comments WHERE `equipment_id` = :equipment_id";
+        $params = ['equipment_id' => $equipmentId];
+        $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
+        return $catalogo;
     }
 
 

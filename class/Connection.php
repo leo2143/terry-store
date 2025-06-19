@@ -64,17 +64,19 @@ class Connection
     }
 
     /**
-     * Ejecuta una Insert o Update SQL.
+     * Ejecuta una Insert delete o Update SQL.
      *
      * @param string $query Consulta SQL a ejecutar.
      * @param array $params Lista de posibles parametros por los que filtrar.
      */
-    public static function insertBuilder(string $query, array $params = []): void
+    public static function insertBuilder(string $query, array $params = [],bool $lastId = false ): mixed
     {
         try {
             self::getConnection();
             $PDOStatement = self::$db->prepare($query);
             $PDOStatement->execute($params);
+            if($lastId) return self::$db->lastInsertId();
+            return null;
         } catch (Exception $e) {
             die($e);
         }
