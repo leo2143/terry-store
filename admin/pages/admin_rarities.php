@@ -25,7 +25,7 @@ $rarities = Rarities::getAll();
                         <td><?= $raritie->getName(); ?></td>
 
                         <td>
-                            <div class="d-flex align-items-center justify-content-end gap-3 w-50">
+                            <div class="d-flex align-items-center justify-content-end gap-3">
 
                                 <a href="index.php?page=cu_raritie&id=<?= $raritie->getId() ?>" role="button" class="btn btn-sm btn-edit-primary w-50">Editar</a>
                                 <a href="#"

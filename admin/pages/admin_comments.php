@@ -53,6 +53,4 @@ $comments = Comment::getAll();
         <?PHP } ?>
         </table>
     </div>
-    <a href="index.php?page=cu_comment" class="btn btn-custom w-100 mt-5  p-3">cargar nuevo comentario</a>
-
 </div>

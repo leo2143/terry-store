@@ -56,9 +56,6 @@ if ($equipmentSelected) {
               <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="index.php?page=equipments">Productos</a>
             </li>
             <li class="nav-item">
@@ -69,6 +66,9 @@ if ($equipmentSelected) {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?page=alumno">Alumno</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin/index.php">Admin</a>
             </li>
           </ul>
         </div>

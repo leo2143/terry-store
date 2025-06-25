@@ -728,3 +728,6 @@ textarea.form-control-custom:disabled {
 
 /* Fondo animado 1*/
 /* ----------------------------------------load  estilos ---------------------------------------- */
+.modal-title{
+  text-align: center;
+}

@@ -29,18 +29,18 @@ $comments = Comment::getByEquipmentId($productId);
   </div>
 
   <div class="container" id="description">
-    <h3>Descripcion</h3>
+    <h2>Descripcion</h2>
     <p><?= $item->getDescription(); ?></p>
 
   </div>
 
   <div class="container d-flex flex-column gap-3">
 
-    <h3>Especificaciones</h3>
+    <h2>Especificaciones</h2>
 
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-pokeNfts-green">
       <div class="border-end border-dark text-center w-50">
-        <h4>Rareza</h4>
+        <h3>Rareza</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getRarity()->getName(); ?>
@@ -49,7 +49,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-principal-50">
       <div class="border-end border-dark text-center w-50">
-        <h4>Material</h4>
+        <h3>Material</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getMaterial(); ?></p>
@@ -57,7 +57,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-pokeNfts-green">
       <div class="border-end border-dark text-center w-50">
-        <h4>Habilidad</h4>
+        <h3>Habilidad</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getAbility(); ?></p>
@@ -65,7 +65,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-principal-50">
       <div class="border-end border-dark text-center w-50">
-        <h4>Fecha de ingreso</h4>
+        <h3>Fecha de ingreso</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getDateAdded(); ?></p>
@@ -73,7 +73,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-pokeNfts-green">
       <div class="border-end border-dark text-center w-50">
-        <h4>Tipo</h4>
+        <h3>Tipo</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getType(); ?></p>
@@ -81,7 +81,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
     <div class="item-1 d-flex gap-0 align-items-center justify-content-center text-center bg-principal-50">
       <div class="border-end border-dark text-center w-50">
-        <h4>Categoria</h4>
+        <h3>Categoria</h3>
       </div>
       <div class="text-center justify-content-center w-50">
         <p class="text-center mt-2 fs-4"><?= $item->getCategory()->getName(); ?></p>
@@ -89,7 +89,7 @@ $comments = Comment::getByEquipmentId($productId);
     </div>
   </div>
   <div class="container">
-    <h3>Características</h3>
+    <h2>Características</h2>
     <div class="d-flex gap-4 flex-wrap mt-3">
       <?php foreach ($item->getFeatures() as $feature) { ?>
         <div class="value-card p-2 ps-3 pe-3 rounded-pill">
@@ -100,7 +100,7 @@ $comments = Comment::getByEquipmentId($productId);
   </div>
   <div class="comentarios">
     <div class="text-center mb-4">
-      <h3 class=" text-sheika-style">Comentarios del Reino</h3>
+      <h2 class=" text-sheika-style">Comentarios del Reino</h2>
     </div>
 
     <div class="glow-wrapper d-flex flex-column gap-4 align-items-center justify-content-center rounded-4 mt-5">
@@ -112,7 +112,7 @@ $comments = Comment::getByEquipmentId($productId);
             <img src="images/icons/<?= $comment->getProfileImage(); ?>" alt=<?= $comment->getProfileImage(); ?> class="rounded-circle" height="120">
           </div>
           <div class="opinions-text ps-lg-5 d-flex flex-column">
-            <h4><?= $comment->getUserName(); ?></h4>
+            <h3><?= $comment->getUserName(); ?></h3>
 
             <p>
               <?= $comment->getContent(); ?>

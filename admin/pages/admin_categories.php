@@ -18,7 +18,7 @@ $categories = Categories::getAll();
                     <tr>
                         <td><?= $categorie->getName() ?></td>
                         <td>
-                            <div class="d-flex align-items-center justify-content-end gap-3 w-50">
+                            <div class="d-flex align-items-center justify-content-end gap-3">
                                 <a href="index.php?page=cu_categorie&id=<?= $categorie->getId() ?>" role="button" class=" btn btn-sm btn-edit-primary w-50">Editar</a>
                                 <a href="#"
                                     class=" btn btn-danger btn-sm btn-eliminar w-50"

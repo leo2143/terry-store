@@ -13,6 +13,10 @@ try {
         case 'Equipment':
             $equipment = Equipment::getById($id);
             Equipment::delete($id);
+            $comments = Comment::getByEquipmentId($equipment->getId());
+            foreach ($comments as $comment) {
+            Images::deleteImage("../../images/icons/" . $comment->getProfileImage());
+            }
             Images::deleteImage("../../images/items/" . $equipment->getImage());
 
             $redirectTo = "equipments";
@@ -33,7 +37,10 @@ try {
 
             break;
         case 'Comment':
+            $comment = Comment::getById($id);
             Comment::delete($id);
+            Images::deleteImage("../../images/icons/" . $comment->getProfileImage());
+
             $redirectTo = "comments";
 
             break;

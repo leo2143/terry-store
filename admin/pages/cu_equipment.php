@@ -2,6 +2,8 @@
 $rarities = Rarities::getAll();
 $categories = Categories::getAll();
 $features = Features::getAll();
+$selectedCategoryId = isset($equipment) && $equipment ? $equipment->getCategory()->getId() : null;
+$selectedRarityId = isset($equipment) && $equipment ? $equipment->getRarity()->getId() : null;
 
 
 $equipmentId = $_GET["id"] ?? 0;
@@ -43,7 +45,7 @@ if ($equipmentId != 0) {
                                 <option value="">– Selecciona –</option>
                                 <?php foreach ($categories as $categorie): ?>
                                     <option value="<?= $categorie->getId(); ?>"
-                                        <?= $categorie->getId() == $equipment->getCategory()->getId()  ? "selected" : ""; ?>>
+                                        <?= $categorie->getId() == $selectedCategoryId  ? "selected" : ""; ?>>
                                         <?= $categorie->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -56,7 +58,7 @@ if ($equipmentId != 0) {
                                 <option value="">– Selecciona –</option>
                                 <?php foreach ($rarities as $raritie): ?>
                                     <option value="<?= $raritie->getId(); ?>"
-                                        <?=  $raritie->getId() ==  $equipment->getRarity()->getId() ? 'selected' : ''; ?>>
+                                        <?=  $raritie->getId() ==  $selectedRarityId ? 'selected' : ''; ?>>
                                         <?= $raritie->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -72,7 +74,7 @@ if ($equipmentId != 0) {
                         <div class="col-md-6 mb-3">
                             <label for="ability" class="form-label text-light">Habilidad</label>
                             <input type="text" class="form-control form-control-custom" id="ability" name="ability"
-                                value="<?= $equipment ? $equipment->getAbility() : ''; ?>">
+                                value="<?= $equipment ? $equipment->getAbility() : ''; ?>" required>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="price" class="form-label text-light">Precio</label>

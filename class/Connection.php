@@ -94,7 +94,7 @@ class Connection
             if ($lastId) return self::$db->lastInsertId();
             return null;
         } catch (Exception $e) {
-            die($e);
+            die("ocurrio un error el ejecutar la consulta");
         }
     }
 }
