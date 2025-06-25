@@ -7,12 +7,9 @@ $section = isset($_GET["page"]) ? $_GET["page"] : "dashboard";
 
 $vista = View::view_validation($section);
 
-$equipmentSelected = isset($_GET['item']) ? $_GET['item'] : null;
-if ($equipmentSelected) {
-    $catalog = Equipment::getByType($equipmentSelected);
-} else {
-    $catalog = Equipment::getAll();
-}
+$userData = $_SESSION['loggedIn'] ?? false;
+Authentication::verify($vista->getRestricted());
+
 
 
 ?>
@@ -49,29 +46,39 @@ if ($equipmentSelected) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+                        <?php if ($userData) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?page=admin_features">Administrar features</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.php">Pagina principal</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.php">👤 <?= $userData["full_name"] ?></a>
+                            </li>
+                        <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link <?= !$userData ? "" : "d-none" ?>" href="index.php?page=login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=admin_features">Administrar features</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Pagina principal</a>
+                        <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+                            <a class="nav-link fw-bold" href="actions/auth_logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>

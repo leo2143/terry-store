@@ -27,24 +27,12 @@ class View
         if ($viewInfo != null) {
 
             if ($viewInfo->getActive()) {
-
-                if ($viewInfo->getRestricted()) {
-                    //SI ES RESTRINGIDA, DEVOLVEMOS DATOS 403
-                    $vistaNoDisp = new self();
-
-                    $vistaNoDisp->name = '403';
-                    $vistaNoDisp->title = 'Página Restringida';
-
-                    return $vistaNoDisp;
-                } else {
-
-                    return $viewInfo;
-                }
+                return $viewInfo;
             } else {
                 $vistaNoDisp = new self();
 
                 $vistaNoDisp->name = 'no_disponible';
-                $vistaNoDisp->title = 'Página no disponible por el mometo';
+                $vistaNoDisp->title = 'Página no disponible por el momento';
 
                 return $vistaNoDisp;
             }

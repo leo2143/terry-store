@@ -157,25 +157,28 @@ Insert into views(name,title,active,restricted) Values
 	('sword','Catalogo Espadas',1,0),
 	('shield','Catalogo Escudos',1,0),
 	('alumno','Datos alumno',1,0),
-  ('dashboard','Panel de administrador',1,0),
-  ('admin_equipments','Panel de equipamientos',1,0),
-  ('admin_comments','Panel de comentarios',1,0),
-  ('admin_categories','Panel de categorias',1,0),
-  ('admin_rarities','Panel de rarezas',1,0),
-  ('admin_features','Panel de features',1,0);
+  ('dashboard','Panel de administrador',1,1),
+  ('admin_equipments','Panel de equipamientos',1,1),
+  ('admin_comments','Panel de comentarios',1,1),
+  ('admin_categories','Panel de categorias',1,1),
+  ('admin_rarities','Panel de rarezas',1,1),
+  ('admin_features','Panel de features',1,1);
 
-  ('cu_equipment','Panel de equipamientos',1,0),
-  ('cu_comment','Panel de comentarios',1,0),
-  ('cu_categorie','Panel de categorias',1,0),
-  ('cu_raritie','Panel de rarezas',1,0),
-  ('cu_feature','Panel de features',1,0),
-  ('login','Iniciar Session',1,0);
+  ('cu_equipment','Panel de equipamientos',1,1),
+  ('cu_comment','Panel de comentarios',1,1),
+  ('cu_categorie','Panel de categorias',1,1),
+  ('cu_raritie','Panel de rarezas',1,1),
+  ('cu_feature','Panel de features',1,1),
+  ('login','Iniciar Session',1,1);
 
   
 INSERT INTO users (email, username, full_name, password, role)
 VALUES 
 ("leonardo.davinci.edu", "leonardo", "leonardo orellana", "$2y$10$7fiGQx0Kw0bzZFuQh8iXCu3NZrFcKp81mnYM84O9Kh5GX6CtmmPFu", "superAdmin"),
+("root.davinci.edu", "root", "root", "$2y$10$7fiGQx0Kw0bzZFuQh8iXCu3NZrFcKp81mnYM84O9Kh5GX6CtmmPFu", "admin"),
+
 ("david.davinci.edu", "david", "david orellana", "$2y$10$XEEbyLKtPymaq/ZnrsFC1O448F7/lUpNfpa9ZrupMxV1Ii.hTtOwO", "client");
 
 --> super admin pass: contraseñaSuperAdmin 
+--> admin pass: contraseñaSuperAdmin 
 --> client pass: contraseña123

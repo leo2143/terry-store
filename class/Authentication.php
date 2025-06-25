@@ -22,4 +22,36 @@ class Authentication
             return null;
         }
     }
+
+    public static function log_out()
+    {
+        if (isset($_SESSION["loggedIn"])) {
+            unset($_SESSION["loggedIn"]);
+        }
+    }
+
+    public static function verify($level = 0): bool
+    {
+
+        if (!$level) {
+            return true;
+        } else {
+
+            if (isset($_SESSION["loggedIn"])) {
+
+                if (
+                    $_SESSION["loggedIn"]['role'] == "admin"
+                    or
+                    $_SESSION["loggedIn"]['role'] == "superAdmin"
+                ) {
+                    return true;
+                } else {
+                    header("Location: ../index.php?page=login");
+                    return false;
+                }
+            }
+            header("Location: ../index.php?page=login");
+            return false;
+        }
+    }
 }
