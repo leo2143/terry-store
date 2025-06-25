@@ -8,6 +8,12 @@ class Rarities
 
 
 
+    /**
+     * Crea una nueva rareza en la base de datos.
+     *
+     * @param string $name Nombre de la rareza.
+     * @return void
+     */
     public static function create($name): void
     {
         $params = ['name' => $name];
@@ -17,6 +23,13 @@ class Rarities
         (new Connection())->insertBuilder($query, $params);
     }
 
+    /**
+     * Actualiza el nombre de una rareza existente.
+     *
+     * @param int $id ID de la rareza a actualizar.
+     * @param string $name Nuevo nombre de la rareza.
+     * @return void
+     */
     public static function update($id, $name): void
     {
         $params = ['id' => $id, 'name' => $name];
@@ -25,6 +38,12 @@ class Rarities
         (new Connection())->insertBuilder($query, $params);
     }
 
+    /**
+     * Retorna una instancia de Rarities correspondiente al ID proporcionado.
+     *
+     * @param int $id ID de la rareza.
+     * @return Rarities
+     */
     public static function getById($id): Rarities
     {
         $query = "SELECT * FROM rarities WHERE id = :id";
@@ -35,6 +54,11 @@ class Rarities
     }
 
 
+    /**
+     * Retorna todas las rarezas existentes en la base de datos.
+     *
+     * @return array Lista de objetos Rarities.
+     */
     public static function getAll(): array
     {
         $allItems = [];
@@ -44,6 +68,12 @@ class Rarities
 
         return $allItems;
     }
+    /**
+     * Elimina una rareza de la base de datos por su ID.
+     *
+     * @param int $id ID de la rareza a eliminar.
+     * @return void
+     */
     public static function delete($id)
     {
         $params = ["id" => $id];

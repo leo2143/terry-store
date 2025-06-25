@@ -17,6 +17,22 @@ class Equipment
     private  $date_added;
     private $image;
 
+    /**
+     * Crea un nuevo equipamiento en la base de datos.
+     *
+     * @param string $name Nombre del equipamiento.
+     * @param string $type Tipo del equipamiento ('arma' o 'escudo').
+     * @param int $categoryId ID de la categoría asociada.
+     * @param int $rarityId ID de la rareza asociada.
+     * @param string $material Material del equipamiento.
+     * @param string $ability Habilidad especial del equipamiento.
+     * @param string $description Descripción del producto.
+     * @param float $price Precio del equipamiento.
+     * @param string $dateAdded Fecha de creación (formato YYYY-MM-DD).
+     * @param string $image Ruta o nombre de la imagen.
+     *
+     * @return int ID del equipamiento insertado.
+     */
     public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): int
     {
         $query = "INSERT INTO equipments (
@@ -40,6 +56,24 @@ class Equipment
 
         return (new Connection())->insertBuilder($query, $params, true);
     }
+    /**
+     * Actualiza los datos de un equipamiento existente.
+     *
+     * @param int $id ID del equipamiento a actualizar.
+     * @param string $name Nombre del equipamiento.
+     * @param string $type Tipo del equipamiento ('arma' o 'escudo').
+     * @param int $categoryId ID de la categoría.
+     * @param int $rarityId ID de la rareza.
+     * @param string $material Material del equipamiento.
+     * @param string $ability Habilidad del equipamiento.
+     * @param string $description Descripción del producto.
+     * @param float $price Precio.
+     * @param string $dateAdded Fecha de modificación.
+     * @param string $image Imagen del equipamiento.
+     *
+     * @return void
+     */
+
     public static function update(int $id, string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
     {
         $query = "UPDATE equipments SET 
@@ -62,6 +96,13 @@ class Equipment
 
         (new Connection())->insertBuilder($query, $params);
     }
+    /**
+     * Elimina un equipamiento por su ID.
+     *
+     * @param int $id ID del equipamiento a eliminar.
+     *
+     * @return void
+     */
 
     public static function delete($id)
     {
@@ -144,6 +185,14 @@ class Equipment
         return $resultado ?? null;
     }
 
+    /**
+     * Inserta una o varias relaciones entre un equipamiento y sus características.
+     *
+     * @param int $equipmentId ID del equipamiento.
+     * @param array $featuresIds Array de IDs de características.
+     *
+     * @return void
+     */
 
     public static function insertEquipmentFeature($equipmentId, array $featuresIds)
     {
@@ -156,6 +205,11 @@ class Equipment
             (new Connection())->insertBuilder($query, $params);
         }
     }
+    /**
+     * Elimina todas las características asociadas al equipamiento actual.
+     *
+     * @return void
+     */
 
     public function deleteEquipmentFeature()
     {
@@ -192,6 +246,13 @@ class Equipment
         return $trimmedText;
     }
     private static $createValues = ['id', 'name', 'type', 'material', 'ability', 'description', 'price', 'date_added', 'image'];
+    /**
+     * Crea una instancia de Equipment y la completa con relaciones a categoría, rareza y características.
+     *
+     * @param array $equipmentData Datos del equipamiento obtenidos desde la base de datos.
+     *
+     * @return Equipment
+     */
     private static function buildEquipmentClasses($equipmentData): Equipment
     {
 
@@ -406,7 +467,9 @@ class Equipment
         return $this->features;
     }
     /**
-     * Get the value of features
+     * Retorna un array con los IDs de todas las características asociadas al equipamiento.
+     *
+     * @return array
      */
     public function getFeaturesIds(): array
     {

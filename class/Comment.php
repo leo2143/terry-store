@@ -16,6 +16,17 @@ class Comment
     private $profile_image;
 
 
+    /**
+     * Crea un nuevo comentario en la base de datos.
+     *
+     * @param int $equipmentId ID del equipamiento al que pertenece el comentario.
+     * @param string $username Nombre de usuario que realiza el comentario.
+     * @param string $profileImage Ruta o nombre del archivo de imagen de perfil.
+     * @param string $content Contenido del comentario.
+     * @param int $rating Puntuación del comentario (1 a 5).
+     * @param string $createAt Fecha y hora de creación del comentario.
+     * @return void
+     */
     public static function create($equipmentId, $username, $profileImage, $content, $rating, $createAt): void
     {
         $query = "INSERT INTO comments (`equipment_id`, `username`, `profile_image`, `content`, `rating`, `created_at`) 
@@ -33,7 +44,18 @@ class Comment
         (new Connection())->insertBuilder($query, $params);
     }
 
-
+    /**
+     * Actualiza un comentario existente.
+     *
+     * @param int $id ID del comentario a actualizar.
+     * @param int $equipmentId ID del equipamiento asociado.
+     * @param string $username Nombre de usuario.
+     * @param string $profileImage Imagen de perfil.
+     * @param string $content Texto del comentario.
+     * @param int $rating Valoración (1 a 5).
+     * @param string $createAt Fecha y hora de creación.
+     * @return void
+     */
     public static function update($id, $equipmentId, $username, $profileImage, $content, $rating, $createAt)
     {
         $params = [
@@ -50,6 +72,12 @@ class Comment
         (new Connection())->insertBuilder($query,  $params);
     }
 
+    /**
+     * Obtiene un comentario por su ID.
+     *
+     * @param int $id ID del comentario.
+     * @return Comment
+     */
     public static function getById($id): Comment
     {
         $query = "SELECT * FROM comments WHERE id = :id";
@@ -58,7 +86,12 @@ class Comment
         $catalogo = (new Connection())->selectBuilder($query, self::class, $params);
         return $catalogo[0];
     }
-
+    /**
+     * Obtiene todos los comentarios asociados a un equipamiento específico.
+     *
+     * @param int $equipmentId ID del equipamiento.
+     * @return Comment[] Array de comentarios.
+     */
     public static function getByEquipmentId($equipmentId): array
     {
         $query = "SELECT * FROM comments WHERE `equipment_id` = :equipment_id";
@@ -67,7 +100,11 @@ class Comment
         return $catalogo;
     }
 
-
+    /**
+     * Obtiene todos los comentarios de la base de datos.
+     *
+     * @return Comment[] Array de todos los comentarios.
+     */
     public static function getAll(): array
     {
         $allItems = [];
@@ -77,7 +114,12 @@ class Comment
 
         return $allItems;
     }
-
+    /**
+     * Elimina un comentario por su ID.
+     *
+     * @param int $id ID del comentario a eliminar.
+     * @return void
+     */
     public static function delete($id)
     {
         $params = ["id" => $id];

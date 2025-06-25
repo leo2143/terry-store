@@ -1,6 +1,12 @@
 <?php
 
-function autoloadClasses($nombreClase) {
+/**
+ * Carga automáticamente la clase solicitada si su archivo existe en la carpeta `../class/`.
+ *
+ * @param string $nombreClase Nombre de la clase a cargar.
+ */
+function autoloadClasses($nombreClase)
+{
     $archivoClase = __DIR__ . "/../class/$nombreClase.php";
 
     if (file_exists($archivoClase)) {

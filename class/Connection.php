@@ -14,6 +14,13 @@ class Connection
 
 
     private static ?PDO $db = null;
+    /**
+     * Establece una conexión PDO a la base de datos y la asigna a una propiedad estática.
+     * 
+     * Si la conexión falla, detiene la ejecución con un mensaje de error.
+     * 
+     * @return void
+     */
     public static function createConnection()
     {
         try {
@@ -24,8 +31,11 @@ class Connection
     }
 
     /**
-     * Retorna la instancia de PDO lista para utilizar
-     * @return PDO
+     * Retorna una instancia activa de la conexión PDO.
+     * 
+     * Si aún no hay conexión, la crea automáticamente.
+     * 
+     * @return PDO Instancia de la conexión a la base de datos.
      */
 
     public static function getConnection(): PDO
@@ -35,13 +45,16 @@ class Connection
     }
 
     /**
-     * Ejecuta una consulta SELECT SQL y devuelve los resultados como una lista de objetos de una clase dada.
+     * Ejecuta una consulta SELECT SQL y devuelve los resultados como una lista de objetos o como un `PDOStatement`.
      *
      * @param string $query Consulta SQL a ejecutar.
-     * @param string $class Nombre de la clase a la que se mapearán los resultados.
-     * @param array $params Lista de posibles parametros por los que filtrar.
-     * @return mixed Lista de objetos instanciados de la clase especificada.
+     * @param string $class Nombre de la clase en la que se mapearán los resultados (si $complexClass es false).
+     * @param array $params Parámetros asociados a la consulta preparada.
+     * @param bool $complexClass Si es true, devuelve un `PDOStatement` con resultados en formato asociativo (ideal para joins o estructuras complejas).
+     * 
+     * @return mixed Array de objetos instanciados o `PDOStatement` si $complexClass es true.
      */
+
     public static function selectBuilder(string $query, string $class, array $params = [], bool $complexClass = false): mixed
     {
         try {
@@ -64,18 +77,21 @@ class Connection
     }
 
     /**
-     * Ejecuta una Insert delete o Update SQL.
+     * Ejecuta una sentencia SQL de tipo INSERT, UPDATE o DELETE.
      *
      * @param string $query Consulta SQL a ejecutar.
-     * @param array $params Lista de posibles parametros por los que filtrar.
+     * @param array $params Parámetros asociados a la consulta preparada.
+     * @param bool $lastId Si es true, retorna el último ID insertado.
+     * 
+     * @return mixed Retorna el ID del último registro insertado si $lastId es true, de lo contrario null.
      */
-    public static function insertBuilder(string $query, array $params = [],bool $lastId = false ): mixed
+    public static function insertBuilder(string $query, array $params = [], bool $lastId = false): mixed
     {
         try {
             self::getConnection();
             $PDOStatement = self::$db->prepare($query);
             $PDOStatement->execute($params);
-            if($lastId) return self::$db->lastInsertId();
+            if ($lastId) return self::$db->lastInsertId();
             return null;
         } catch (Exception $e) {
             die($e);

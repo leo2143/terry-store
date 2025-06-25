@@ -18,20 +18,16 @@ class View
     public static function view_validation(?string $viewName)
     {
 
-        //OBTENEMOS TODOS LOS DATOS DE NUESTRO JSON
         $query = "SELECT * FROM views WHERE name = :name";
         $params = ['name' => $viewName];
 
 
         $viewInfo = (new Connection())->selectBuilder($query, self::class, $params)[0] ?? null;
 
-        //SI SE ECUENTRA UNA VISTA QUE COORDINE CON LA SOLICITADA
         if ($viewInfo != null) {
 
-            //CHECKEAMOS QUE ESTÉ ACTIVA
             if ($viewInfo->getActive()) {
 
-                //CHECKEAMOS QUE NO SEA RESTRINGIDA
                 if ($viewInfo->getRestricted()) {
                     //SI ES RESTRINGIDA, DEVOLVEMOS DATOS 403
                     $vistaNoDisp = new self();
@@ -45,7 +41,6 @@ class View
                     return $viewInfo;
                 }
             } else {
-                //DEVOLVEMOS LOS DATOS DE PÁGINA NO DISPONIBLE
                 $vistaNoDisp = new self();
 
                 $vistaNoDisp->name = 'no_disponible';
@@ -55,7 +50,6 @@ class View
             }
         }
 
-        //SI NO SE ENCUENTRA, DEVOLVEMOS DATOS DE 404
         $vista404 = new self();
 
         $vista404->name = "404";
