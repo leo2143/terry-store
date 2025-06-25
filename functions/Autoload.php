@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 /**
  * Carga automáticamente la clase solicitada si su archivo existe en la carpeta `../class/`.
  *
