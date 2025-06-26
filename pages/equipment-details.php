@@ -25,16 +25,13 @@ $comments = Comment::getByEquipmentId($productId);
         <button class="btn btn-custom btn-lg">Comprar</button>
         <button class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar al Carrito</button>
       </div> -->
-      <form action="admin/actions/add_item_acc.php" method="GET" class="row ">
-        <div class="col-6 d-flex align-items-center">
-          <label for="q" class="fw-bold me-2">Cantidad:</label>
-          <input type="number" class="form-control" value="1" name="q" id="q">
+      <form action="admin/actions/add_item_acc.php" method="GET" class="container d-flex flex-column gap-3 ">
+        <div class=" d-flex flex-column align-items-start gap-2">
+          <label for="quantity" class="form-label text-white ">Cantidad:</label>
+          <input type="number" class="form-control form-control-custom" value="1" name="quantity" id="quantity" placeholder="Cantidad">
         </div>
-
-        <div class="col-6">
-          <input type="submit" value="AGREGAR A CARRITO" class="btn btn-custom btn-lg">
-          <input type="hidden" value="<?= $id ?>" name="id" id="id">
-        </div>
+        <input type="submit" value="Agregar al Carrito" class="btn btn-custom btn-lg">
+        <input type="hidden" value="<?= $productId ?>" name="id" id="id">
       </form>
     </div>
   </div>

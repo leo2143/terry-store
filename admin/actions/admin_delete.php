@@ -50,16 +50,14 @@ try {
 
             $redirectTo = "comments";
             $redirectTranslate = "el comentario";
-
-
             break;
         default:
             throw new Exception("No existe el item a eliminar");
     }
 } catch (Exception $e) {
 
-    Alert::add_alert("danger", message: "Ocurrio un error al intentar eliminar " .$redirectTranslate);
+    Alert::add_alert("danger", message: "Ocurrio un error al intentar eliminar " . $redirectTranslate);
 }
-    Alert::add_alert("success", message: "Se elimino correctamente " .$redirectTranslate );
+Alert::add_alert("success", message: "Se elimino correctamente " . $redirectTranslate);
 
 header('Location: ../index.php?page=admin_' . $redirectTo);

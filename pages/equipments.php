@@ -25,7 +25,7 @@ $equipmentSelected = "sword" ?? "espadas";
       <a class="col" href="index.php?page=equipment-details&id=<?= $item->getId() ?>">
         <div class="card-1">
           <div class="card h-100 text-center">
-            <img src="images/traveler-icon.png" class="card-img-top card-img-back  position-absolute z-n1" alt="">
+            <img src="images/traveler-icon.png" class="card-img-top card-img-back  position-absolute z-n1" alt="imagen de fondo en productos">
             <img src="images/items/<?= $item->getImage() ?>" class="card-img-top" alt="<?= $item->getName(); ?>">
             <div class="card-body">
               <h2 class="card-title h5 text-sheika-style"><?= $item->getname(); ?></h2>

@@ -1,7 +1,16 @@
 <?php
 class Authentication
 {
-
+    /**
+     * Inicia sesión de un usuario verificando sus credenciales.
+     *
+     * @param string $username Nombre de usuario ingresado por el usuario.
+     * @param string $password Contraseña ingresada por el usuario.
+     *
+     * @return string|null|false Devuelve el rol del usuario si las credenciales son correctas.
+     *                            Devuelve false si la contraseña es incorrecta.
+     *                            Devuelve null si no se encontró al usuario.
+     */
     public static function log_in(string $username, string $password): mixed
     {
         $user = User::getByUsername($username);
@@ -25,6 +34,11 @@ class Authentication
             return null;
         }
     }
+    /**
+     * Cierra la sesión del usuario actual eliminando los datos de sesión.
+     *
+     * @return void
+     */
 
     public static function log_out()
     {
@@ -33,27 +47,38 @@ class Authentication
         }
     }
 
+    /**
+     * Verifica si el usuario tiene permiso para acceder a una sección según su nivel de acceso.
+     *
+     * @param int $level Nivel requerido (por defecto es 0 = sin verificación).
+     *                   - 0: sin restricciones.
+     *                   - >1: requiere rol "admin" o "superAdmin".
+     *
+     * @return bool Devuelve true si tiene permisos suficientes.
+     *              Redirige al login y devuelve false si no tiene permisos.
+     */
     public static function verify($level = 0): bool
     {
-
         if (!$level) {
             return true;
-        } else {
+        }
+        if (isset($_SESSION["loggedIn"])) {
 
-            if (isset($_SESSION["loggedIn"])) {
-
+            if ($level > 1) {
                 if (
                     $_SESSION["loggedIn"]['role'] == "admin"
-                    or
-                    $_SESSION["loggedIn"]['role'] == "superAdmin"
+                    || $_SESSION["loggedIn"]['role'] == "superAdmin"
                 ) {
                     return true;
                 } else {
-                    header("Location: ../index.php?page=login");
+                    header("Location: /terry-store/admin/index.php?page=login");
                     return false;
                 }
+            } else {
+                return true;
             }
-            header("Location: ../index.php?page=login");
+        } else {
+            header("Location: /terry-store/admin/index.php?page=login");
             return false;
         }
     }

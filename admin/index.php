@@ -48,7 +48,7 @@ Authentication::verify($vista->getRestricted());
                     <ul class="navbar-nav">
                         <?php if ($userData) { ?>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link" aria-current="page" href="index.php">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a>
@@ -67,13 +67,12 @@ Authentication::verify($vista->getRestricted());
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="../index.php">Pagina principal</a>
-                            </li>
-
-                            <li class="nav-item">
                                 <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
                             </li>
                         <?php } ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.php">Pagina principal</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link <?= !$userData ? "" : "d-none" ?>" href="index.php?page=login">Login</a>
                         </li>

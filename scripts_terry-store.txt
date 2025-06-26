@@ -157,19 +157,22 @@ Insert into views(name,title,active,restricted) Values
 	('sword','Catalogo Espadas',1,0),
 	('shield','Catalogo Escudos',1,0),
 	('alumno','Datos alumno',1,0),
-  ('dashboard','Panel de administrador',1,1),
-  ('admin_equipments','Panel de equipamientos',1,1),
-  ('admin_comments','Panel de comentarios',1,1),
-  ('admin_categories','Panel de categorias',1,1),
-  ('admin_rarities','Panel de rarezas',1,1),
-  ('admin_features','Panel de features',1,1);
+  ('dashboard','Panel de administrador',1,2),
+  ('admin_equipments','Panel de equipamientos',1,2),
+  ('admin_comments','Panel de comentarios',1,2),
+  ('admin_categories','Panel de categorias',1,2),
+  ('admin_rarities','Panel de rarezas',1,2),
+  ('admin_features','Panel de features',1,2);
 
-  ('cu_equipment','Panel de equipamientos',1,1),
-  ('cu_comment','Panel de comentarios',1,1),
-  ('cu_categorie','Panel de categorias',1,1),
-  ('cu_raritie','Panel de rarezas',1,1),
-  ('cu_feature','Panel de caracteristicas',1,1),
-  ('login','Iniciar Session',1,1);
+  ('cu_equipment','Panel de equipamientos',1,2),
+  ('cu_comment','Panel de comentarios',1,2),
+  ('cu_categorie','Panel de categorias',1,2),
+  ('cu_raritie','Panel de rarezas',1,2),
+  ('cu_feature','Panel de caracteristicas',1,2),
+  ('login','Iniciar Session',1,0),
+  ('finish-payment.php','Finalizar pago',1,1),
+  ('cart','Carrito de compras',1,0);
+  
 
   
 INSERT INTO users (email, username, full_name, password, role)

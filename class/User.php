@@ -10,6 +10,13 @@ class User
 
 
 
+    /**
+     * Busca un usuario por su nombre de usuario.
+     *
+     * @param string $username Nombre de usuario a buscar.
+     *
+     * @return User|null Retorna una instancia del usuario si existe, o null si no se encuentra.
+     */
     public static function getByUsername($username): mixed
     {
         $query = "SELECT * FROM users WHERE username = :username";
