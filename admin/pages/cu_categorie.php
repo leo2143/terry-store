@@ -1,6 +1,6 @@
 <?php
 $categorieId = $_GET["id"] ?? 0;
-$categorie;
+$categorie = null;
 if ($categorieId != 0) {
     $categorie = Categories::getById($categorieId);
 }

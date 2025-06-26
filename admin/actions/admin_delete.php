@@ -8,6 +8,8 @@ try {
 
     $id = $postData["id"] ?? 0;
     $redirectTo;
+    $redirectTranslate;
+
     $entity = $postData["entitie"] ?? null;
     switch ($entity) {
         case 'Equipment':
@@ -15,25 +17,30 @@ try {
             Equipment::delete($id);
             $comments = Comment::getByEquipmentId($equipment->getId());
             foreach ($comments as $comment) {
-            Images::deleteImage("../../images/icons/" . $comment->getProfileImage());
+                Images::deleteImage("../../images/icons/" . $comment->getProfileImage());
             }
             Images::deleteImage("../../images/items/" . $equipment->getImage());
 
             $redirectTo = "equipments";
+            $redirectTranslate = "el equipamiento";
+
             break;
         case 'Categories':
             Categories::delete($id);
             $redirectTo = "categories";
+            $redirectTranslate = "la categoria";
 
             break;
         case 'Rarities':
             Rarities::delete($id);
             $redirectTo = "rarities";
+            $redirectTranslate = "la rareza";
 
             break;
         case 'Features':
             Features::delete($id);
             $redirectTo = "features";
+            $redirectTranslate = "la carracteristica";
 
             break;
         case 'Comment':
@@ -42,6 +49,8 @@ try {
             Images::deleteImage("../../images/icons/" . $comment->getProfileImage());
 
             $redirectTo = "comments";
+            $redirectTranslate = "el comentario";
+
 
             break;
         default:
@@ -49,6 +58,8 @@ try {
     }
 } catch (Exception $e) {
 
-    die($e);
+    Alert::add_alert("danger", message: "Ocurrio un error al intentar eliminar " .$redirectTranslate);
 }
+    Alert::add_alert("success", message: "Se elimino correctamente " .$redirectTranslate );
+
 header('Location: ../index.php?page=admin_' . $redirectTo);

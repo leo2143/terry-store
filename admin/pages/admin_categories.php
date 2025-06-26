@@ -5,6 +5,9 @@ $categories = Categories::getAll();
 ?>
 
 <div class="container d-flex flex-column justify-content-center">
+    <div>
+        <?= Alert::get_alerts(); ?>
+    </div>
     <div class="table-responsive mt-5">
         <table class="table">
             <thead>

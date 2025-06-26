@@ -3,6 +3,9 @@ $equipments = Equipment::getAll();
 $toDelete = null;
 ?>
 <div class="container d-flex flex-column justify-content-center">
+    <div>
+        <?= Alert::get_alerts(); ?>
+    </div>
     <div class="table-responsive mt-5">
         <table class="table ">
             <thead>
@@ -28,7 +31,7 @@ $toDelete = null;
                         </td>
                         <td><?= $equipment->getName(); ?></td>
                         <td><?= $equipment->getType(); ?></td>
-                        <td><?= $equipment->getCategory()->getName();?></td>
+                        <td><?= $equipment->getCategory()->getName(); ?></td>
                         <td><?= $equipment->getRarity()->getName(); ?></td>
                         <td><?= $equipment->getMaterial(); ?></td>
                         <td><?= $equipment->getAbility(); ?></td>

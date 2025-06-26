@@ -16,7 +16,7 @@ $description = $_POST['description'];
 $price = (float) $_POST['price'];
 $dateAdded = date('Y-m-d');
 $features = $_POST["features"] ?? [];
-
+$isEdit = false;
 
 
 try {
@@ -49,6 +49,7 @@ try {
             $dateAdded,
             $image
         );
+        Alert::add_alert("success", message: "El equipamiento con el nombre " . $postData["name"] . " fue actualizado correctamente");
     } else {
         $equipmentId =  Equipment::create(
             $name,
@@ -62,12 +63,13 @@ try {
             $dateAdded,
             $image
         );
+        Alert::add_alert(type: "success", message: "El equipamiento con el nombre " . $postData["name"] . " fue creado correctamente");
 
         if (isset($features)) {
             Equipment::insertEquipmentFeature($equipmentId, $features);
         }
     }
 } catch (Exception $e) {
-    die("no se pudo cargar el equipamiento");
+    Alert::add_alert("danger", message: "Ocurrio un error al " . $isEdit ? "actualizar" : "crear" . " el equipamiento");
 }
 header('Location: ../index.php?page=admin_equipments');

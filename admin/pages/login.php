@@ -3,13 +3,9 @@
     <div class="col-md-6 col-lg-5">
       <div class="card bg-dark text-light border-0 shadow rounded-4 p-4">
         <h1 class="text-center mb-4 text-sheika-style">Iniciar sesión</h1>
-
-        <?php if (isset($_GET['error'])): ?>
-          <div class="alert alert-danger text-center">
-            <?= htmlspecialchars($_GET['error']) ?>
-          </div>
-        <?php endif; ?>
-
+        <div>
+          <?= Alert::get_alerts(); ?>
+        </div>
         <form action="actions/auth_login.php" method="POST">
           <div class="mb-3">
             <label for="username" class="form-label">Usuario</label>

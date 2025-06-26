@@ -1,6 +1,6 @@
 <?php
 $raritieId = $_GET["id"] ?? 0;
-$raritie;
+$raritie = null;
 if ($raritieId != 0) {
     $raritie = Rarities::getById($raritieId);
 }

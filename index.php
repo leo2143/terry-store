@@ -72,8 +72,11 @@ Authentication::verify($vista->getRestricted());
             <li class="nav-item">
               <a class="nav-link <?= !$userData && $userData["role"] == "admin" || $userData["role"] == "superAdmin" ? "" : "d-none" ?>" href="admin/index.php">Admin</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link <?= !$userData ? "" : "d-none" ?>" href="admin/index.php?page=login">Login</a>
+            <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+              <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
+            </li>
+            <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
+              <a class="nav-link " href="admin/index.php?page=login">Login</a>
             </li>
             <li class="nav-item <?= $userData ? "" : "d-none" ?>">
               <a class="nav-link fw-bold" href="admin/actions/auth_logout.php">Logout</a>

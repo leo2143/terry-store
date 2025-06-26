@@ -1,6 +1,6 @@
 <?php
 $featureId = $_GET["id"] ?? 0;
-$feature;
+$feature = null;
 if ($featureId != 0) {
     $feature = Features::getById($featureId);
 }

@@ -21,10 +21,21 @@ $comments = Comment::getByEquipmentId($productId);
         <h2><img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2"> <?= $item->getPrice(); ?></h2>
       </div>
 
-      <div class="container d-flex flex-column gap-2  " id="botones">
+      <!-- <div class="container d-flex flex-column gap-2  " id="botones">
         <button class="btn btn-custom btn-lg">Comprar</button>
         <button class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar al Carrito</button>
-      </div>
+      </div> -->
+      <form action="admin/actions/add_item_acc.php" method="GET" class="row ">
+        <div class="col-6 d-flex align-items-center">
+          <label for="q" class="fw-bold me-2">Cantidad:</label>
+          <input type="number" class="form-control" value="1" name="q" id="q">
+        </div>
+
+        <div class="col-6">
+          <input type="submit" value="AGREGAR A CARRITO" class="btn btn-custom btn-lg">
+          <input type="hidden" value="<?= $id ?>" name="id" id="id">
+        </div>
+      </form>
     </div>
   </div>
 

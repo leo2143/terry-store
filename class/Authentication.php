@@ -16,9 +16,12 @@ class Authentication
 
                 return $loginData['role'];
             } else {
+                Alert::add_alert("danger", "la contraseña ingresada no es correcta");
                 return FALSE;
             }
         } else {
+            Alert::add_alert("warning", "No se encontro la cuenta en nuestra base de datos");
+
             return null;
         }
     }

@@ -16,5 +16,5 @@ if ($sesionStatus) {
     }
 } else {
 
-    header("Location: ../../index.php?page=login&error=Usuario o contraseña incorrectos");
+    header("Location: ../index.php?page=login");
 }

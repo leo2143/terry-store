@@ -10,7 +10,7 @@ class User
 
 
 
-    public static function getByUsername($username): User
+    public static function getByUsername($username): mixed
     {
         $query = "SELECT * FROM users WHERE username = :username";
         $params = ['username' => $username];

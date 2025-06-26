@@ -71,7 +71,7 @@ Authentication::verify($vista->getRestricted());
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="../index.php">👤 <?= $userData["full_name"] ?></a>
+                                <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
                             </li>
                         <?php } ?>
                         <li class="nav-item">
