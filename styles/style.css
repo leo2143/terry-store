@@ -731,3 +731,9 @@ textarea.form-control-custom:disabled {
 .modal-title{
   text-align: center;
 }
+.offcanvas{
+  background-color: var(--neutral-dark);
+}
+.offcanvas-header .btn-close{
+filter: invert(1);  
+}
