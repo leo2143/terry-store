@@ -5,6 +5,8 @@ $rarities = Rarities::getAll();
 ?>
 
 <div class="container d-flex flex-column justify-content-center">
+    <h1 class="text-center my-3">Dashboard de rarezas</h1>
+
     <div>
         <?= Alert::get_alerts(); ?>
     </div>

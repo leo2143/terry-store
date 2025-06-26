@@ -39,50 +39,72 @@ Authentication::verify($vista->getRestricted());
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-tecno">
-            <div class="container-fluid pb-2">
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid">
+
+                <!-- Botón toggler solo visible en mobile -->
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminOffcanvas"
+                    aria-controls="adminOffcanvas">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+
+                <!-- Navbar desktop -->
+                <div class="collapse navbar-collapse justify-content-between d-none d-lg-flex">
                     <ul class="navbar-nav">
                         <?php if ($userData) { ?>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="index.php">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php?page=admin_features">Administrar features</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Administrar caracteristicas</a></li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Pagina principal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?= !$userData ? "" : "d-none" ?>" href="index.php?page=login">Login</a>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <?php if ($userData) { ?>
+                            <li class="nav-item"><a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a></li>
+                        <?php } ?>
+                        <li class="nav-item"><a class="nav-link" href="../index.php">Página principal</a></li>
+                        <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
+                            <a class="nav-link" href="index.php?page=login">Login</a>
                         </li>
                         <li class="nav-item <?= $userData ? "" : "d-none" ?>">
                             <a class="nav-link fw-bold" href="actions/auth_logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>
+
+                <!-- Offcanvas solo en mobile -->
+                <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="adminOffcanvas" aria-labelledby="adminOffcanvasLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="adminOffcanvasLabel">Panel de administración</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav">
+                            <?php if ($userData) { ?>
+                                <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Administrar carracteristicas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a></li>
+                            <?php } ?>
+                            <li class="nav-item"><a class="nav-link" href="../index.php">Página principal</a></li>
+                            <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
+                                <a class="nav-link" href="index.php?page=login">Login</a>
+                            </li>
+                            <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+                                <a class="nav-link fw-bold" href="actions/auth_logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </nav>
+
     </header>
 
 
