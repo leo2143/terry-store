@@ -137,7 +137,6 @@ INSERT INTO equipment_features (equipment_id, feature_id) VALUES
   (5, 5),   -- Escudo Boko → Ligero pero frágil
   (6, 6),   -- Escudo Boko con pinchos → Daño al embestir
   (7, 7),   -- Escudo Lizal reforzado → Gran defensa contra ataques físicos
-
   (8, 8),   -- Mandoble real → Gran daño en área
   (9, 9),   -- Espada larga de plata → Mayor alcance de ataque
   (10, 10), -- Tridente escamas de luz → Ataques rápidos bajo el agua
@@ -163,7 +162,6 @@ Insert into views(name,title,active,restricted) Values
   ('admin_categories','Panel de categorias',1,2),
   ('admin_rarities','Panel de rarezas',1,2),
   ('admin_features','Panel de features',1,2);
-
   ('cu_equipment','Panel de equipamientos',1,2),
   ('cu_comment','Panel de comentarios',1,2),
   ('cu_categorie','Panel de categorias',1,2),

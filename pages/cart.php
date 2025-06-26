@@ -68,7 +68,7 @@ $items = Cart::getCart();
             </div>
         </form>
     <?php } else { ?>
-        <div class="alert alert-warning text-center p-4 rounded-3">
+        <div class=" alert-warning text-center p-4 rounded-3">
             <h2 class="h5">Tu carrito está vacío</h2>
         </div>
     <?php } ?>
