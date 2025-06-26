@@ -54,9 +54,7 @@ Authentication::verify($vista->getRestricted());
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=cart">Carrito</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
             </li>
@@ -71,6 +69,9 @@ Authentication::verify($vista->getRestricted());
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php?page=alumno">Alumno</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php?page=cart">Carrito</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= isset($userData) && ($userData["role"] === "admin" || $userData["role"] === "superAdmin") ? "" : "d-none" ?>" href="admin/index.php">Admin</a>
