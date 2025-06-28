@@ -52,17 +52,17 @@ Authentication::verify($vista->getRestricted());
                     <ul class="navbar-nav">
                         <?php if ($userData) { ?>
                             <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Administrar caracteristicas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Admin equipamientos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Admin comentarios</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Admin categorias</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Admin rarezas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Admin caracteristicas</a></li>
                         <?php } ?>
                     </ul>
 
                     <ul class="navbar-nav">
                         <?php if ($userData) { ?>
-                            <li class="nav-item"><a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a></li>
+                            <li class="nav-item"><a class="nav-link" href="../index.php?page=user-panel">👤 <?= $userData["full_name"] ?></a></li>
                         <?php } ?>
                         <li class="nav-item"><a class="nav-link" href="../index.php">Página principal</a></li>
                         <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
@@ -84,12 +84,12 @@ Authentication::verify($vista->getRestricted());
                         <ul class="navbar-nav">
                             <?php if ($userData) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Administrar equipamientos</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Administrar comentarios</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Administrar categorias</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Administrar rarezas</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Administrar carracteristicas</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Admin equipamientos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Admin comentarios</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_categories">Admin categorias</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_rarities">Admin rarezas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?page=admin_features">Admin carracteristicas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="../index.php?page=user-panel">👤 <?= $userData["full_name"] ?></a></li>
                             <?php } ?>
                             <li class="nav-item"><a class="nav-link" href="../index.php">Página principal</a></li>
                             <li class="nav-item <?= !$userData ? "" : "d-none" ?>">

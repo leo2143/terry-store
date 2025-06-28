@@ -2,8 +2,13 @@
 
 class Checkout
 {
-
-    public static function insert_checkout_data(array $purchaseData, array $cartItems)
+    /**
+     * Registra una nueva compra y sus items en la base de datos
+     * 
+     * @param array $purchaseData ['user_id', 'purchase_date', 'total_amount'] 
+     * @param array $cartItems [equipment_id => cantidad]
+     * @return bool True si tuvo éxito
+     */    public static function insert_checkout_data(array $purchaseData, array $cartItems)
     {
 
         // Insertar datos principales de la compra
@@ -25,7 +30,7 @@ class Checkout
                 'equipment_id' => $equipmentId,
                 'quantity' => $quantity
             ];
-             (new Connection())->insertBuilder($query, $params, );
+            (new Connection())->insertBuilder($query, $params,);
         }
         return true;
     }

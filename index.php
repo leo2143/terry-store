@@ -102,7 +102,7 @@ Authentication::verify($vista->getRestricted());
                 <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
               </li>
               <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
-                <a class="nav-link" href="admin/index.php?page=login">Login</a>
+                <a class="nav-link" href="index.php?page=user-panel">Login</a>
               </li>
               <li class="nav-item <?= $userData ? "" : "d-none" ?>">
                 <a class="nav-link fw-bold" href="admin/actions/auth_logout.php">Logout</a>

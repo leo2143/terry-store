@@ -23,14 +23,16 @@ try {
 
     if (!empty($fileData["image"]["tmp_name"])) {
         $image = Images::uploadImage("../../images/items", $_FILES['image']);
+
+        if (isset($postData['id']) && is_numeric($postData['id']) && !empty($postData['image'])) {
+            Images::deleteImage("../../images/items/" . $postData['image']);
+        }
     } else {
-        $image = $postData['image'];
+        $image = $postData['image'] ?? null;
     }
 
     if (isset($postData['id']) && is_numeric($postData['id'])) {
         $equipment = Equipment::getById($postData['id']);
-
-        Images::deleteImage("../../images/items/" . $_POST['image']);
         $equipment->deleteEquipmentFeature();
         if (isset($features)) {
             Equipment::insertEquipmentFeature($equipment->getId(), $features);

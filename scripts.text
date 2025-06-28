@@ -149,6 +149,19 @@ INSERT INTO equipment_features (equipment_id, feature_id) VALUES
   (6, 6), (7, 7), (8, 8), (9, 9), (10, 10),
   (11, 11), (12, 12), (13, 13), (14, 14), (15, 15);
 
+INSERT INTO comments (equipment_id, username, profile_image, content, rating) 
+VALUES 
+(3, 'link', 'link.png', 'Excelente equipo, muy resistente para mis expediciones.', 5),
+(7, 'zelda', 'zelda.png', 'Buen producto pero el envío tardó más de lo esperado.', 4),
+(1, 'link', 'link.png', 'Justo lo que necesitaba para mi entrenamiento diario.', 5),
+(5, 'zelda', 'zelda.png', 'Calidad aceptable, aunque esperaba algo más durable.', 3),
+(9, 'link', 'link.png', '¡Increíble! Superó todas mis expectativas.', 5),
+(2, 'zelda', 'zelda.png', 'Funciona bien, pero las instrucciones no eran muy claras.', 4),
+(8, 'link', 'link.png', 'Producto de alta gama, vale cada moneda.', 5),
+(4, 'zelda', 'zelda.png', 'No es compatible con todos los accesorios que tengo.', 2),
+(6, 'link', 'link.png', 'Buen balance entre precio y calidad.', 4),
+(10, 'zelda', 'zelda.png', 'Defectuoso al llegar, pero el reemplazo fue perfecto.', 3);
+
 INSERT INTO views (name, title, active, restricted) VALUES
   ('home','Bienvenido',1,0),
   ('about-terry','Sobre la Tienda de Terry',1,0),
@@ -172,7 +185,6 @@ INSERT INTO views (name, title, active, restricted) VALUES
   ('login','Iniciar Session',1,0),
   ('checkout','Finalizar pago',1,1),
   ('user-panel','Panel de usuario',1,1),
-
   ('cart','Carrito de compras',1,0);
 
 INSERT INTO users (email, username, full_name, password, role) VALUES

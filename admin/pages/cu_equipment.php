@@ -2,7 +2,6 @@
 $rarities = Rarities::getAll();
 $categories = Categories::getAll();
 $features = Features::getAll();
-$selectedCategoryId = isset($equipment) && $equipment ? $equipment->getCategory()->getId() : null;
 $selectedRarityId = isset($equipment) && $equipment ? $equipment->getRarity()->getId() : null;
 
 
@@ -43,10 +42,10 @@ if ($equipmentId != 0) {
                             <label for="category" class="form-label text-light">Categoría</label>
                             <select class="form-select form-select-custom" id="category" name="category" required>
                                 <option value="">– Selecciona –</option>
-                                <?php foreach ($categories as $categorie): ?>
-                                    <option value="<?= $categorie->getId(); ?>"
-                                        <?= $categorie->getId() == $selectedCategoryId  ? "selected" : ""; ?>>
-                                        <?= $categorie->getName(); ?>
+                                <?php foreach ($categories as $category): ?>
+                                    <option value="<?= $category->getId(); ?>"
+                                        <?= (isset($equipment) && $equipment->getCategory()->getId() == $category->getId()) ? "selected" : ""; ?>>
+                                        <?= $category->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -58,7 +57,7 @@ if ($equipmentId != 0) {
                                 <option value="">– Selecciona –</option>
                                 <?php foreach ($rarities as $raritie): ?>
                                     <option value="<?= $raritie->getId(); ?>"
-                                        <?=  $raritie->getId() ==  $selectedRarityId ? 'selected' : ''; ?>>
+                                        <?=(isset($equipment) && $equipment->getRarity()->getId() == $raritie->getId()) ? "selected" : ""; ?>>
                                         <?= $raritie->getName(); ?>
                                     </option>
                                 <?php endforeach; ?>
