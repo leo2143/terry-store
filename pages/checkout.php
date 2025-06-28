@@ -23,10 +23,10 @@ $userData = $_SESSION['loggedIn'];
     </div>
 
     <?php if (count($items)) { ?>
-        <form action="admin/actions/confirm_payment.php" method="POST">
+        <form action="admin/actions/checkout_confirm.php" method="POST">
             <div class="table-responsive">
                 <table class="table align-middle text-center">
-                    <thead class="table-light">
+                    <thead class="">
                         <tr>
                             <th width="15%">Portada</th>
                             <th>Producto</th>

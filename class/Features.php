@@ -11,18 +11,17 @@ class Features
      * Crea una nueva característica en la base de datos.
      *
      * @param string $name Nombre de la característica.
-     * @return Features Característica creada.
+     * @return void
+
      */
 
-    public static function create($name): Features
+    public static function create($name): void
     {
+        $params = ['name' => $name];
 
-        $params = ["name" => $name];
         $query = "INSERT INTO features (`name`) VALUES (:name)";
 
-        $allItems = (new Connection())->selectBuilder($query, self::class, $params);
-
-        return $allItems[0];
+        (new Connection())->insertBuilder($query, $params);
     }
 
     /**

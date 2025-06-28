@@ -9,10 +9,13 @@ $isEdit = false;
 try {
     if (!empty($fileData["image"]["tmp_name"])) {
         $image = Images::uploadImage("../../images/icons", $_FILES['image']);
+
+        if (!empty($postData['image'])) {
+            Images::deleteImage("../../images/icons/" . $postData['image']);
+        }
     } else {
         $image = $postData['image'];
     }
-
     if (isset($postData['id']) && is_numeric($postData['id'])) {
         Images::deleteImage("../../images/icons/" . $_POST['image']);
         Comment::update($postData['id'], $postData['equipment_id'], $postData['username'], $image, $postData['content'], $postData['rating'], date("Y/m/d"));

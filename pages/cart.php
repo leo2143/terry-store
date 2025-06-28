@@ -64,7 +64,7 @@ $items = Cart::getCart();
                 <input type="submit" value="Actualizar cantidades" class="btn btn-warning w-100 w-md-auto">
                 <a href="index.php?page=equipments" class="btn btn-info w-100 w-md-auto">Seguir comprando</a>
                 <a href="admin/actions/delete_all_items_acc.php" class="btn btn-danger w-100 w-md-auto">Vaciar Carrito</a>
-                <a href="index.php?page=finish-payment" class="btn btn-custom w-100 w-md-auto">Finalizar compra</a>
+                <a href="index.php?page=checkout" class="btn btn-custom w-100 w-md-auto">Finalizar compra</a>
             </div>
         </form>
     <?php } else { ?>

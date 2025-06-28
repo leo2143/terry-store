@@ -77,7 +77,7 @@ Authentication::verify($vista->getRestricted());
               <a class="nav-link <?= isset($userData) && ($userData["role"] === "admin" || $userData["role"] === "superAdmin") ? "" : "d-none" ?>" href="admin/index.php">Admin</a>
             </li>
             <li class="nav-item <?= $userData ? "" : "d-none" ?>">
-              <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
+              <a class="nav-link" href="index.php?page=user-panel">👤 <?= $userData["full_name"] ?></a>
             </li>
             <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
               <a class="nav-link " href="admin/index.php?page=login">Login</a>
