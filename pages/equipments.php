@@ -28,9 +28,9 @@ $equipmentSelected = "sword" ?? "espadas";
             <img src="images/traveler-icon.png" class="card-img-top card-img-back  position-absolute z-n1" alt="imagen de fondo en productos">
             <img src="images/items/<?= $item->getImage() ?>" class="card-img-top" alt="<?= $item->getName(); ?>">
             <div class="card-body">
-              <h2 class="card-title h5 text-sheika-style"><?= $item->getname(); ?></h2>
+              <h2 class="card-title text-sheika-style"><?= $item->getname(); ?></h2>
               <p class="text-start equipments-description mb-sm-2 mb-xl-0"><?= $item->reduceDescription() ?></p>
-              <p class="fw-bold h2 pt-3 pb-3"> <img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2">
+              <p class="fw-bold pt-3 pb-3"> <img src="images/rupia.png" alt="rupia" width="30" height="40" class="me-2">
                 <?= $item->getPrice(); ?></p>
             </div>
           </div>

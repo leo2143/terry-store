@@ -83,7 +83,7 @@ Authentication::verify($vista->getRestricted());
         <!-- Offcanvas visible solo en mobile -->
         <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+            <a class="offcanvas-title" id="offcanvasNavbarLabel">Menú</a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
           </div>
           <div class="offcanvas-body">

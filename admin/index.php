@@ -77,7 +77,7 @@ Authentication::verify($vista->getRestricted());
                 <!-- Offcanvas solo en mobile -->
                 <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="adminOffcanvas" aria-labelledby="adminOffcanvasLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="adminOffcanvasLabel">Panel de administración</h5>
+                        <a class="offcanvas-title" id="adminOffcanvasLabel">Panel de administración</a>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
                     </div>
                     <div class="offcanvas-body">
