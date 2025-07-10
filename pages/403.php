@@ -1,0 +1,1 @@
+<img src="images/terry-restricted.webp" alt="terry not found" class="img d-block mx-auto not-found-image">

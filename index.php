@@ -1,6 +1,7 @@
 <?PHP
-require_once 'class/Equipment.php';
-require_once 'class/View.php';
+require_once 'functions/Autoload.php';
+
+
 
 
 $section = isset($_GET["page"]) ? $_GET["page"] : "home";
@@ -13,6 +14,8 @@ if ($equipmentSelected) {
 } else {
   $catalog = Equipment::getAll();
 }
+$userData = $_SESSION['loggedIn'] ?? false;
+Authentication::verify($vista->getRestricted());
 
 
 ?>
@@ -41,38 +44,76 @@ if ($equipmentSelected) {
 <body>
   <header>
     <nav class="navbar navbar-expand-lg bg-tecno">
-      <div class="container-fluid pb-2">
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="container-fluid">
+
+        <!-- Botón toggler visible solo en mobile -->
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Navbar de desktop -->
+        <div class="collapse navbar-collapse justify-content-between d-none d-lg-flex">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.php">Home</a>
+            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=about-terry">Sobre terry</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=equipments">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=equipments&item=sword">Armas</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=equipments&item=shield">Escudos</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php?page=alumno">Alumno</a></li>
+          </ul>
+
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.php?page=cart">Carrito</a></li>
+            <li class="nav-item <?= isset($userData) && ($userData["role"] === "admin" || $userData["role"] === "superAdmin") ? "" : "d-none" ?>">
+              <a class="nav-link" href="admin/index.php">Admin</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=about-terry">Sobre terry</a>
+            <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+              <a class="nav-link" href="index.php?page=user-panel">👤 <?= $userData["full_name"] ?></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=opinions">Comentarios del Reino</a>
+            <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
+              <a class="nav-link" href="admin/index.php?page=login">Login</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=equipments">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=equipments&item=sword">Armas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=equipments&item=shield">Escudos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="index.php?page=alumno">Alumno</a>
+            <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+              <a class="nav-link fw-bold" href="admin/actions/auth_logout.php">Logout</a>
             </li>
           </ul>
         </div>
+
+        <!-- Offcanvas visible solo en mobile -->
+        <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <a class="offcanvas-title" id="offcanvasNavbarLabel">Menú</a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=about-terry">Sobre terry</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=equipments">Productos</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=equipments&item=sword">Armas</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=equipments&item=shield">Escudos</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=alumno">Alumno</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?page=cart">Carrito</a></li>
+              <li class="nav-item <?= isset($userData) && ($userData["role"] === "admin" || $userData["role"] === "superAdmin") ? "" : "d-none" ?>">
+                <a class="nav-link" href="admin/index.php">Admin</a>
+              </li>
+              <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+                <a class="nav-link" href="#">👤 <?= $userData["full_name"] ?></a>
+              </li>
+              <li class="nav-item <?= !$userData ? "" : "d-none" ?>">
+                <a class="nav-link" href="index.php?page=user-panel">Login</a>
+              </li>
+              <li class="nav-item <?= $userData ? "" : "d-none" ?>">
+                <a class="nav-link fw-bold" href="admin/actions/auth_logout.php">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
+
+
   </header>
 
 

@@ -1,21 +1,117 @@
 <?php
 
-require_once 'class/Connection.php';
 class Equipment
 {
     private  $id;
     private  $name;
     private  $type;
-    private  $category;
-    private  $rarity;
+    private  Categories $category;
+    private  Rarities $rarity;
+
+    private array $features;
+
     private  $material;
     private  $ability;
     private  $description;
     private  $price;
-    private  $dateAdded;
+    private  $date_added;
     private $image;
 
+    /**
+     * Crea un nuevo equipamiento en la base de datos.
+     *
+     * @param string $name Nombre del equipamiento.
+     * @param string $type Tipo del equipamiento ('arma' o 'escudo').
+     * @param int $categoryId ID de la categoría asociada.
+     * @param int $rarityId ID de la rareza asociada.
+     * @param string $material Material del equipamiento.
+     * @param string $ability Habilidad especial del equipamiento.
+     * @param string $description Descripción del producto.
+     * @param float $price Precio del equipamiento.
+     * @param string $dateAdded Fecha de creación (formato YYYY-MM-DD).
+     * @param string $image Ruta o nombre de la imagen.
+     *
+     * @return int ID del equipamiento insertado.
+     */
+    public static function create(string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): int
+    {
+        $query = "INSERT INTO equipments (
+        `name`, `type`, `category_id`, `rarity_id`, `material`, `ability`, `description`, `price`, `date_added`, `image`
+    ) VALUES (
+       :name, :type, :category_id, :rarity_id, :material, :ability, :description, :price, :date_added, :image
+    )";
 
+        $params = [
+            'name' => $name,
+            'type' => $type,
+            'category_id' => $categoryId,
+            'rarity_id' => $rarityId,
+            'material' => $material,
+            'ability' => $ability,
+            'description' => $description,
+            'price' => $price,
+            'date_added' => $dateAdded,
+            'image' => $image,
+        ];
+
+        return (new Connection())->insertBuilder($query, $params, true);
+    }
+    /**
+     * Actualiza los datos de un equipamiento existente.
+     *
+     * @param int $id ID del equipamiento a actualizar.
+     * @param string $name Nombre del equipamiento.
+     * @param string $type Tipo del equipamiento ('arma' o 'escudo').
+     * @param int $categoryId ID de la categoría.
+     * @param int $rarityId ID de la rareza.
+     * @param string $material Material del equipamiento.
+     * @param string $ability Habilidad del equipamiento.
+     * @param string $description Descripción del producto.
+     * @param float $price Precio.
+     * @param string $dateAdded Fecha de modificación.
+     * @param string $image Imagen del equipamiento.
+     *
+     * @return void
+     */
+
+    public static function update(int $id, string $name, string $type, int $categoryId, int $rarityId, string $material, string $ability, string $description, float $price, string $dateAdded, string $image): void
+    {
+        $query = "UPDATE equipments SET 
+        `id` = :id,`name` = :name, `type` = :type, `category_id` = :category_id, `rarity_id` = :rarity_id, `material` = :material, `ability` = :ability, `description` = :description, `price` = :price, `date_added`=:date_added, `image` = :image WHERE id = :id";
+
+
+        $params = [
+            'id' => $id,
+            'name' => $name,
+            'type' => $type,
+            'category_id' => $categoryId,
+            'rarity_id' => $rarityId,
+            'material' => $material,
+            'ability' => $ability,
+            'description' => $description,
+            'price' => $price,
+            'date_added' => $dateAdded,
+            'image' => $image,
+        ];
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+    /**
+     * Elimina un equipamiento por su ID.
+     *
+     * @param int $id ID del equipamiento a eliminar.
+     *
+     * @return void
+     */
+
+    public static function delete($id)
+    {
+        $params = ["id" => $id];
+
+        $query = "DELETE FROM equipments WHERE id = :id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
 
     /**
      * Retorna el catálogo de equipamientos completo
@@ -24,9 +120,12 @@ class Equipment
     public static function getAll(): array
     {
         $allItems = [];
-        $query = "SELECT * FROM equipments";
+        $query = "SELECT equipments.*, GROUP_CONCAT(equipment_features.feature_id) AS features_ids FROM equipments LEFT JOIN equipment_features ON equipments.id = equipment_features.equipment_id GROUP BY equipments.id;";
 
-        $allItems = (new Connection())->consultBuilder($query, self::class);
+        $tableResult = (new Connection())->selectBuilder($query, self::class, [], true);
+        while ($result = $tableResult->fetch()) {
+            $allItems[] = self::buildEquipmentClasses($result);
+        }
 
         return $allItems;
     }
@@ -39,11 +138,16 @@ class Equipment
     public static function getById(int $id): ?Equipment
     {
 
-        $query = "SELECT * FROM equipments WHERE id = :id";
+        $query = "SELECT equipments.*, GROUP_CONCAT(equipment_features.feature_id) AS features_ids FROM equipments LEFT JOIN equipment_features ON equipments.id = equipment_features.equipment_id WHERE id = :id GROUP BY equipments.id";
         $params = ['id' => $id];
 
-        $catalogo = (new Connection())->consultBuilder($query, self::class, $params);
-        return $catalogo[0] ?? null;
+        $result = (new Connection())->selectBuilder($query, self::class, $params, true);
+
+        $catalogo = self::buildEquipmentClasses($result->fetch());
+
+
+
+        return $catalogo ?? null;
     }
 
     /**
@@ -77,9 +181,46 @@ class Equipment
         $query = "SELECT * FROM equipments WHERE type = :type";
         $params = ['type' => $type];
 
-        $resultado = (new Connection())->consultBuilder($query, self::class, $params);
+        $resultado = (new Connection())->selectBuilder($query, self::class, $params);
         return $resultado ?? null;
     }
+
+    /**
+     * Inserta una o varias relaciones entre un equipamiento y sus características.
+     *
+     * @param int $equipmentId ID del equipamiento.
+     * @param array $featuresIds Array de IDs de características.
+     *
+     * @return void
+     */
+
+    public static function insertEquipmentFeature($equipmentId, array $featuresIds)
+    {
+
+        foreach ($featuresIds as $features) {
+            $params = ["equipment_id" => $equipmentId, "feature_id" => $features];
+
+            $query = "INSERT INTO equipment_features(`equipment_id`,`feature_id`) VALUES(:equipment_id , :feature_id)";
+
+            (new Connection())->insertBuilder($query, $params);
+        }
+    }
+    /**
+     * Elimina todas las características asociadas al equipamiento actual.
+     *
+     * @return void
+     */
+
+    public function deleteEquipmentFeature()
+    {
+
+        $params = ["equipment_id" => $this->id];
+
+        $query = "DELETE FROM equipment_features WHERE `equipment_id` = :equipment_id";
+
+        (new Connection())->insertBuilder($query, $params);
+    }
+
 
     /**
      * Reduce la descripción a un máximo de caracteres
@@ -104,6 +245,38 @@ class Equipment
 
         return $trimmedText;
     }
+    private static $createValues = ['id', 'name', 'type', 'material', 'ability', 'description', 'price', 'date_added', 'image'];
+    /**
+     * Crea una instancia de Equipment y la completa con relaciones a categoría, rareza y características.
+     *
+     * @param array $equipmentData Datos del equipamiento obtenidos desde la base de datos.
+     *
+     * @return Equipment
+     */
+    private static function buildEquipmentClasses($equipmentData): Equipment
+    {
+
+        $equipment = new self();
+
+        foreach (self::$createValues as $value) {
+            $equipment->{$value} = $equipmentData[$value];
+        }
+
+        $equipment->category = Categories::getById($equipmentData["category_id"]);
+        $equipment->rarity = Rarities::getById($equipmentData["rarity_id"]);
+        $featuresIds = !empty($equipmentData['features_ids']) ? explode(",", $equipmentData['features_ids']) : [];
+
+        $featuresEquipments = [];
+        foreach ($featuresIds as $featureId) {
+            $featuresEquipments[] = Features::getById($featureId);
+        }
+        $equipment->features = $featuresEquipments;
+
+
+
+        return $equipment;
+    }
+
 
     /**
      * Get the value of id
@@ -161,46 +334,6 @@ class Equipment
     public function setType($type)
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @return  self
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of rarity
-     */
-    public function getRarity()
-    {
-        return $this->rarity;
-    }
-
-    /**
-     * Set the value of rarity
-     *
-     * @return  self
-     */
-    public function setRarity($rarity)
-    {
-        $this->rarity = $rarity;
 
         return $this;
     }
@@ -290,7 +423,7 @@ class Equipment
      */
     public function getDateAdded()
     {
-        return $this->dateAdded;
+        return $this->date_added;
     }
 
     /**
@@ -300,7 +433,7 @@ class Equipment
      */
     public function setDateAdded($dateAdded)
     {
-        $this->dateAdded = $dateAdded;
+        $this->date_added = $dateAdded;
 
         return $this;
     }
@@ -321,6 +454,74 @@ class Equipment
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of features
+     */
+    public function getFeatures(): array
+    {
+        return $this->features;
+    }
+    /**
+     * Retorna un array con los IDs de todas las características asociadas al equipamiento.
+     *
+     * @return array
+     */
+    public function getFeaturesIds(): array
+    {
+        $result = [];
+        foreach ($this->features as $feature) {
+            $result[] = $feature->getId();
+        }
+        return $result;
+    }
+
+    /**
+     * Set the value of features
+     */
+    public function setFeatures(array $features): self
+    {
+        $this->features = $features;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rarity
+     */
+    public function getRarity(): Rarities
+    {
+        return $this->rarity;
+    }
+
+    /**
+     * Set the value of rarity
+     */
+    public function setRarity(Rarities $rarity): self
+    {
+        $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category
+     */
+    public function getCategory(): Categories
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     */
+    public function setCategory(Categories $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
