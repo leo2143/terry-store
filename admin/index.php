@@ -121,7 +121,7 @@ Authentication::verify($vista->getRestricted());
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content border-0 rounded-4 shadow-lg bg-dark text-light">
                     <div class="modal-header border-0">
-                        <h3 class="modal-title fs-4" id="exampleModalLabel">¿Estás seguro que deseas eliminar este item?</h3>
+                        <h2 class="modal-title fs-4" id="exampleModalLabel">¿Estás seguro que deseas eliminar este item?</h2>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body d-flex flex-column align-items-center gap-4 py-4">

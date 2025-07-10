@@ -34,7 +34,7 @@ if ($equipmentId != 0) {
                             <select class="form-select form-select-custom" id="type" name="type" required>
                                 <option value="">– Selecciona –</option>
                                 <option value="sword" <?= $equipment && $equipment->getType() === 'sword' ? 'selected' : ''; ?>>Arma</option>
-                                <option value="Escudo" <?= $equipment && $equipment->getType() === 'Escudo' ? 'selected' : ''; ?>>Escudo</option>
+                                <option value="shield" <?= $equipment && $equipment->getType() === 'shield' ? 'selected' : ''; ?>>Escudo</option>
                             </select>
                         </div>
 
