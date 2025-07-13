@@ -82,4 +82,17 @@ class Authentication
             return false;
         }
     }
+    /**
+     * Verifica si el usuario tiene el rol de administrador.
+     *
+     * @return bool Devuelve true si el usuario tiene el rol de administrador.
+     */
+    public static function isAdmin(): bool
+    {
+        if (isset($_SESSION["loggedIn"])) {
+            return $_SESSION["loggedIn"]['role'] == "admin"
+                || $_SESSION["loggedIn"]['role'] == "superAdmin";
+        }
+        return false;
+    }
 }

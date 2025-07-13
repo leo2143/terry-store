@@ -8,9 +8,10 @@ $section = isset($_GET["page"]) ? $_GET["page"] : "dashboard";
 $vista = View::view_validation($section);
 
 $userData = $_SESSION['loggedIn'] ?? false;
+
 Authentication::verify($vista->getRestricted());
 
-
+$isAdmin = Authentication::isAdmin();
 
 ?>
 
@@ -50,7 +51,7 @@ Authentication::verify($vista->getRestricted());
                 <!-- Navbar desktop -->
                 <div class="collapse navbar-collapse justify-content-between d-none d-lg-flex">
                     <ul class="navbar-nav">
-                        <?php if ($userData) { ?>
+                        <?php if ($userData && $isAdmin) { ?>
                             <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Admin equipamientos</a></li>
                             <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Admin comentarios</a></li>
@@ -82,7 +83,7 @@ Authentication::verify($vista->getRestricted());
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav">
-                            <?php if ($userData) { ?>
+                            <?php if ($userData && $isAdmin) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
                                 <li class="nav-item"><a class="nav-link" href="index.php?page=admin_equipments">Admin equipamientos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="index.php?page=admin_comments">Admin comentarios</a></li>
