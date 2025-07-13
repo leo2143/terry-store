@@ -8,12 +8,6 @@ $section = isset($_GET["page"]) ? $_GET["page"] : "home";
 
 $vista = View::view_validation($section);
 
-$equipmentSelected = isset($_GET['item']) ? $_GET['item'] : null;
-if ($equipmentSelected) {
-  $catalog = Equipment::getByType($equipmentSelected);
-} else {
-  $catalog = Equipment::getAll();
-}
 $userData = $_SESSION['loggedIn'] ?? false;
 Authentication::verify($vista->getRestricted());
 

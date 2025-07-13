@@ -1,4 +1,10 @@
 <?php
+$equipmentSelected = isset($_GET['item']) ? $_GET['item'] : null;
+if ($equipmentSelected) {
+  $catalog = Equipment::getByType($equipmentSelected);
+} else {
+  $catalog = Equipment::getAll();
+}
 
 $item = $_GET["item"] ?? null;
 $toSpanish = "";

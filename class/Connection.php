@@ -8,7 +8,7 @@ class Connection
 {
     private const DB_SERVER = "localhost";
     private const DB_USER = "root";
-    private const DB_PASS = "root";
+    private const DB_PASS = "";
     private const DB_NAME = "terry_store";
     private const DB_DSN = "mysql:host=" . self::DB_SERVER . ";dbname=" . self::DB_NAME .  ";charset=utf8mb4";
 
