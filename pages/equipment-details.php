@@ -13,7 +13,7 @@ $comments = Comment::getByEquipmentId($productId);
 
     <div id="image-product" class="container">
       <img class="img-fluid
-          " src="images/items/<?= $item->getImage(); ?>" alt="imagen del producto">
+          " src="images/items/<?= $item->getImage(); ?>" alt="imagen del producto "> 
     </div>
     <div class="container d-flex flex-column justify-content-center align-items-center" id="info-container">
       <div class="container pt-2  pb-4" title="title product and price">

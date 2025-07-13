@@ -58,6 +58,9 @@ try {
     // Alert::add_alert("danger", message: "Ocurrió un error al intentar eliminar " . $redirectTranslate . ": " . $e->getMessage());
 
     Alert::add_alert("danger", message: "Ocurrio un error al intentar eliminar " . $redirectTranslate);
+    return header('Location: ../index.php?page=admin_' . $redirectTo);
+
+    
 }
 Alert::add_alert("success", message: "Se elimino correctamente " . $redirectTranslate);
 
